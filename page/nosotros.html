@@ -1,0 +1,679 @@
+﻿<!doctype html>
+<!-- ================================================================
+     PAGINA: nosotros.html — Historia, equipo y valores de EcoSort
+     ================================================================
+     Esta pagina presenta la identidad corporativa:
+       - Hero con imagen de fondo y eslogan
+       - Historia: de proyecto universitario a plataforma real
+       - Proposito: mision, vision, valores, compromiso ambiental
+       - Objetivos: 6 metas con checkmarks + metricas clave
+       - Equipo: 6 tarjetas con foto, rol y descripcion
+
+     ARCHIVOS RELACIONADOS:
+       - scss/pages/_nosotros.scss: estilos especificos
+       - js/main.js: contadores animados (count-metric)
+        - js/auth-header.js: header
+      ================================================================ -->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Conoce la historia de EcoSort, nuestra misión, visión y el equipo detrás de la plataforma de clasificación de residuos con IA."
+    />
+    <title>Nosotros | EcoSort</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="icon" href="../assets/images/logo.png" />
+    <!-- Font Awesome se usa para los iconos de mision/vision/valores
+         (fas fa-bullseye, fa-eye, fa-heart, fa-globe). Alternativa a
+         los SVG personalizados del resto del sitio. -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="../index.html" class="navbar-brand-link">
+          <img
+            src="../assets/images/logo.png"
+            alt="EcoSort Logo"
+            class="brand-logo-img"
+            loading="lazy"
+          />
+          <span class="brand-text"
+            ><span class="text-white">Eco</span
+            ><span class="text-green">Sort</span></span
+          >
+        </a>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="nosotros.html" class="active">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="simulador.html">Simulador</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="actions">
+          <a href="login.html" class="btn-link">Iniciar sesión</a>
+          <a href="registro.html" class="btn-primary">Registrarse</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menú de navegación">☰</button>
+      </div>
+    </header>
+
+    <!-- ===========================================================
+         HEADER + HERO: Barra de navegacion + Hero con imagen
+         ===========================================================
+         El header es identico en todas las paginas (mismo <header>
+         con logo, nav, acciones y menu toggle). La unica diferencia
+         es el enlace "active" que marca la pagina actual.
+
+         El hero de nosotros.html usa una imagen de fondo (bosque.webp)
+         con carga prioritaria (fetchpriority="high") porque es el
+         primer elemento visual importante de la pagina.
+
+         ARCHIVOS RELACIONADOS:
+           - scss/layout/_header.scss: estilos del header
+           - scss/pages/_nosotros.scss: estilos del hero de nosotros
+           - js/main.js: clase "scrolled" al header
+         =========================================================== -->
+    <main class="about-page" id="nosotros">
+      <section class="about-hero">
+        <img
+          src="../assets/images/bosque.webp"
+          alt="Nacimos para cambiar cómo el mundo trata sus residuos"
+          fetchpriority="high"
+          loading="eager"
+          decoding="sync"
+          class="cover-img about-hero-bg"
+        />
+        <div class="container">
+          <div class="about-hero-content">
+            <span class="badge badge-green"
+              ><img src="../assets/icons/leaf.svg" class="icon" alt="" />
+              NUESTRA HISTORIA
+            </span>
+            <h1>Nacimos para cambiar cómo el mundo trata sus residuos</h1>
+            <p>
+              EcoSort es una startup peruana de tecnología ambiental fundada en
+              2025 con la misión de transformar la clasificación de residuos
+              industriales mediante inteligencia artificial generativa.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Historia
+           ===========================================================
+           La historia de EcoSort en formato de texto + imagen.
+           El lado izquierdo tiene parrafos que cuentan el origen
+           (UNI, Innóvate Perú, MIT Tech Review). El lado derecho
+           tiene la imagen del equipo con una capsula "MIT Tech
+           Review" superpuesta y tres indicadores estadisticos
+           (Fundacion 2025, MIT 2025, 12 ciudades).
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_nosotros.scss: .history, .history-grid
+           =========================================================== -->
+      <section class="history section">
+        <div class="container">
+          <div class="history-grid">
+            <div class="history-text">
+              <span class="badge">
+                <img src="../assets/icons/leaf.svg" class="icon" alt="" />
+                NUESTRA HISTORIA
+              </span>
+              <h2>
+                De un proyecto universitario a una plataforma de impacto real
+              </h2>
+              <p>
+                Todo comenzó en los laboratorios de la Universidad Nacional de
+                Ingeniería (UNI), donde un grupo de ingenieros ambientales y
+                desarrolladores detectaron un problema crítico: el 68% de los
+                residuos industriales del Perú terminaban en rellenos sanitarios
+                sin ningún tipo de clasificación previa.
+              </p>
+              <p>
+                Con el apoyo del programa Innóvate Perú, el equipo desarrolló el
+                primer prototipo de visión computacional capaz de identificar 15
+                tipos de residuos en tiempo real. La plataforma fue reconocida
+                por el MIT Technology Review como una de las innovaciones
+                latinoamericanas más prometedoras.
+              </p>
+              <p>
+                Hoy, EcoSort opera en 12 ciudades del Perú, procesando más de
+                1.2 millones de toneladas de residuos al año con una precisión
+                del 97.3%.
+              </p>
+            </div>
+            <div class="history-media nosotros-image-card-wrapper">
+              <img
+                src="../assets/images/nosotros-equipo.webp"
+                alt="Equipo EcoSort"
+                loading="lazy"
+                decoding="async"
+                class="main-hero-img"
+              />
+              <div class="mit-badge-container">
+                <img src="../assets/icons/award.svg" class="icon" alt="" />
+                MIT Tech Review
+              </div>
+              <div class="stats-overlay-row">
+                <div class="stat-pill-item">
+                  <span class="stat-number">2025</span>
+                  <span class="stat-label">Fundación</span>
+                </div>
+                <div class="stat-pill-item">
+                  <span class="stat-number">2025</span>
+                  <span class="stat-label">MIT Reconocimiento</span>
+                </div>
+                <div class="stat-pill-item">
+                  <span class="stat-number">12</span>
+                  <span class="stat-label">Ciudades</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Proposito (Mision, Vision, Valores, Compromiso)
+           ===========================================================
+           4 tarjetas que definen la identidad corporativa. Cada una
+           tiene:
+             - Icono circular con color distintivo (verde, azul,
+               morado, naranja)
+             - Label con el nombre (MISION, VISION, VALORES, etc.)
+             - Titulo y descripcion
+
+           Los iconos usan Font Awesome (fas fa-bullseye, fa-eye,
+           fa-heart, fa-globe) en lugar de SVG personalizados.
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_nosotros.scss: .purpose, .purpose-card
+           =========================================================== -->
+      <section class="purpose section">
+        <div class="container">
+          <div class="section-title">
+            <span class="badge">
+              <img src="../assets/icons/leaf.svg" class="icon" alt="" />
+              PROPÓSITO
+            </span>
+            <h2>Lo que nos mueve cada día</h2>
+          </div>
+          <div class="purpose-grid about-features-grid corporate-goals-section">
+            <article class="purpose-card goal-card card-mision">
+              <div class="purpose-icon icon-green icon-container-circle">
+                <i class="fas fa-bullseye"></i>
+              </div>
+              <span class="purpose-label label-green">MISIÓN</span>
+              <h3>Clasificar residuos industriales con precisión técnica</h3>
+              <p>
+                Proveer una plataforma de inteligencia artificial que clasifique
+                residuos por tipo, toxicidad y volumen, generando protocolos de
+                disposición, almacenamiento y reciclaje con rigor técnico para
+                reducir el error humano y mejorar el cumplimiento ambiental en
+                Latinoamérica.
+              </p>
+            </article>
+            <article class="purpose-card goal-card card-vision">
+              <div class="purpose-icon icon-blue icon-container-circle">
+                <i class="fas fa-eye"></i>
+              </div>
+              <span class="purpose-label label-blue">VISIÓN</span>
+              <h3>Referente técnico en clasificación de residuos</h3>
+              <p>
+                Para 2030, ser la plataforma de referencia en clasificación
+                técnica de residuos industriales en 50 países, procesando más de
+                10 millones de toneladas al año con protocolos automatizados y
+                reduciendo las emisiones del sector en un 30%.
+              </p>
+            </article>
+            <article class="purpose-card goal-card card-valores">
+              <div class="purpose-icon icon-purple icon-container-circle">
+                <i class="fas fa-heart"></i>
+              </div>
+              <span class="purpose-label label-purple">VALORES</span>
+              <h3>Rigor técnico con transparencia y compromiso</h3>
+              <p>
+                Rigor técnico en cada clasificación. Transparencia en los
+                protocolos y reportes ambientales. Compromiso con la reducción
+                del error humano en la gestión de residuos industriales.
+              </p>
+            </article>
+            <article class="purpose-card goal-card card-compromiso">
+              <div class="purpose-icon icon-orange icon-container-circle">
+                <i class="fas fa-globe"></i>
+              </div>
+              <span class="purpose-label label-orange"
+                >COMPROMISO AMBIENTAL</span
+              >
+              <h3>Responsabilidad ecológica en cada decisión</h3>
+              <p>
+                Cada clasificación representa un paso hacia la reducción del
+                impacto ambiental. Operamos con protocolos de carbono neutro,
+                economía circular certificada y alianzas estratégicas con
+                organizaciones ambientales para garantizar que cada residuo
+                tenga una segunda vida útil.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Objetivos y Metricas Clave
+           ===========================================================
+           Layout de dos columnas:
+             - IZQUIERDA: lista de 6 objetivos con iconos check
+               (reducir 50% residuos, escalar a 20 ciudades, etc.)
+             - DERECHA: 4 metricas numericas con contadores animados
+               (precision 97.3%, 12 ciudades, 2800+ clientes, 1.2M
+               toneladas). Usan la clase count-metric de js/main.js.
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_nosotros.scss: .goals, .goal-metric
+             - js/main.js: animateCounter() para los contadores
+           =========================================================== -->
+      <section class="goals section">
+        <div class="container">
+          <div class="goals-grid">
+            <div class="goals-list">
+              <span class="badge badge-green">
+                <img src="../assets/icons/leaf.svg" class="icon" alt="" />
+                OBJETIVOS
+              </span>
+              <h2>Metas concretas para un impacto medible</h2>
+              <ul>
+                <li>
+                  <img
+                    src="../assets/icons/check-circle-stroke.svg"
+                    alt=""
+                    width="20"
+                    height="20"
+                    class="check-icon"
+                  />
+                  Reducir en un 50% los residuos enviados a rellenos sanitarios
+                  para 2026.
+                </li>
+                <li>
+                  <img
+                    src="../assets/icons/check-circle-stroke.svg"
+                    alt=""
+                    width="20"
+                    height="20"
+                    class="check-icon"
+                  />
+                  Escalar operaciones a 20 ciudades de Latinoamérica en los
+                  próximos 2 años.
+                </li>
+                <li>
+                  <img
+                    src="../assets/icons/check-circle-stroke.svg"
+                    alt=""
+                    width="20"
+                    height="20"
+                    class="check-icon"
+                  />
+                  Alcanzar 200 categorías de residuos clasificables mediante IA.
+                </li>
+                <li>
+                  <img
+                    src="../assets/icons/check-circle-stroke.svg"
+                    alt=""
+                    width="20"
+                    height="20"
+                    class="check-icon"
+                  />
+                  Generar más de 100,000 reportes ambientales automatizados al
+                  año.
+                </li>
+                <li>
+                  <img
+                    src="../assets/icons/check-circle-stroke.svg"
+                    alt=""
+                    width="20"
+                    height="20"
+                    class="check-icon"
+                  />
+                  Certificación de carbono neutro para todas las operaciones
+                  antes de 2027.
+                </li>
+                <li>
+                  <img
+                    src="../assets/icons/check-circle-stroke.svg"
+                    alt=""
+                    width="20"
+                    height="20"
+                    class="check-icon"
+                  />
+                  Democratizar el acceso a la tecnología ambiental en
+                  comunidades vulnerables.
+                </li>
+              </ul>
+            </div>
+            <div
+              class="goals-metrics sidebar-breakdown-list right-panel-metrics"
+            >
+              <div class="goal-metric breakdown-item">
+                <div class="goal-metric-icon icon-green metric-icon-box-right">
+                  <i class="fas fa-microchip"></i>
+                </div>
+                <h3
+                  class="count-metric"
+                  data-target="97.3"
+                  data-suffix="%"
+                  data-decimals="1"
+                >
+                  0
+                </h3>
+                <p>Precisión del modelo IA</p>
+              </div>
+              <div class="goal-metric breakdown-item">
+                <div class="goal-metric-icon icon-blue metric-icon-box-right">
+                  <i class="fas fa-globe"></i>
+                </div>
+                <h3
+                  class="count-metric"
+                  data-target="12"
+                  data-suffix=""
+                  data-decimals="0"
+                >
+                  0
+                </h3>
+                <p>Ciudades activas</p>
+              </div>
+              <div class="goal-metric breakdown-item">
+                <div class="goal-metric-icon icon-purple metric-icon-box-right">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h3
+                  class="count-metric"
+                  data-target="2800"
+                  data-suffix="+"
+                  data-decimals="0"
+                >
+                  0
+                </h3>
+                <p>Clientes empresariales</p>
+              </div>
+              <div class="goal-metric breakdown-item">
+                <div class="goal-metric-icon icon-yellow metric-icon-box-right">
+                  <i class="fas fa-leaf"></i>
+                </div>
+                <h3
+                  class="count-metric"
+                  data-target="1.2"
+                  data-suffix="M"
+                  data-decimals="1"
+                >
+                  0
+                </h3>
+                <p>Toneladas clasificadas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Equipo (6 tarjetas de miembros)
+           ===========================================================
+           Grid de 6 tarjetas con la foto del miembro, nombre, rol,
+           departamento (DIRECCION, TECNOLOGIA, etc.) y descripcion.
+           Las fotos usan formato AVIF (mejor compresion que JPG/PNG)
+           y loading="lazy" para carga diferida.
+
+           Cada tarjeta tiene:
+             - .card-top-header: foto circular + info basica
+             - Parrafo de descripcion profesional
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_nosotros.scss: .team-section, .team-card
+           =========================================================== -->
+      <section class="team-section section">
+        <div class="container">
+          <div class="section-title">
+            <span class="badge">
+              <img src="../assets/icons/leaf.svg" class="icon" alt="" />
+              EQUIPO
+            </span>
+            <h2>Las personas detrás de EcoSort</h2>
+            <p>
+              Un equipo multidisciplinario apasionado por la tecnología y el
+              medioambiente.
+            </p>
+          </div>
+          <div class="team-section-container">
+            <article class="team-card">
+              <div class="card-top-header">
+                <img
+                  src="../assets/images/Miembro equipo 1.avif"
+                  alt="Valentina Ríos"
+                  class="profile-avatar"
+                />
+                <div>
+                  <h3>Valentina Ríos</h3>
+                  <span class="team-role">CEO & Co-fundadora</span>
+                  <span class="team-dept">DIRECCIÓN</span>
+                </div>
+              </div>
+              <p>
+                Ingeniera ambiental de la Universidad Nacional de Ingeniería
+                (UNI). Lideró la investigación sobre clasificación de residuos
+                que dio origen a EcoSort.
+              </p>
+            </article>
+            <article class="team-card">
+              <div class="card-top-header">
+                <img
+                  src="../assets/images/Miembro equipo 2.avif"
+                  alt="Santiago Morales"
+                  class="profile-avatar"
+                />
+                <div>
+                  <h3>Santiago Morales</h3>
+                  <span class="team-role">CTO & Co-fundador</span>
+                  <span class="team-dept">TECNOLOGÍA</span>
+                </div>
+              </div>
+              <p>
+                Ph.D. en Visión Computacional. Desarrolló el motor de IA que
+                alcanza 97.3% de precisión en clasificación de residuos.
+              </p>
+            </article>
+            <article class="team-card">
+              <div class="card-top-header">
+                <img
+                  src="../assets/images/Miembro equipo 3.jpg"
+                  alt="Catalina Pérez"
+                  class="profile-avatar"
+                />
+                <div>
+                  <h3>Catalina Pérez</h3>
+                  <span class="team-role">Directora de Operaciones</span>
+                  <span class="team-dept">OPERACIONES</span>
+                </div>
+              </div>
+              <p>
+                Magíster en Logística y Operaciones, con más de 8 años de
+                experiencia escalando operaciones de tecnología limpia en
+                mercados emergentes de Latinoamérica.
+              </p>
+            </article>
+            <article class="team-card">
+              <div class="card-top-header">
+                <img
+                  src="../assets/images/Miembro equipo 4.avif"
+                  alt="Felipe Arévalo"
+                  class="profile-avatar"
+                />
+                <div>
+                  <h3>Felipe Arévalo</h3>
+                  <span class="team-role">Lead Engineer</span>
+                  <span class="team-dept">INGENIERÍA</span>
+                </div>
+              </div>
+              <p>
+                Ingeniero de software con experiencia en sistemas distribuidos y
+                procesamiento en tiempo real. Arquitecto de la plataforma de
+                clasificación de EcoSort.
+              </p>
+            </article>
+            <article class="team-card">
+              <div class="card-top-header">
+                <img
+                  src="../assets/images/Miembro equipo 5.avif"
+                  alt="Daniela Suárez"
+                  class="profile-avatar"
+                />
+                <div>
+                  <h3>Daniela Suárez</h3>
+                  <span class="team-role">Data Scientist</span>
+                  <span class="team-dept">DATOS</span>
+                </div>
+              </div>
+              <p>
+                Experta en machine learning y análisis de datos ambientales.
+                Entrenó los modelos de clasificación con más de 50,000 muestras
+                de residuos etiquetadas manualmente.
+              </p>
+            </article>
+            <article class="team-card">
+              <div class="card-top-header">
+                <img
+                  src="../assets/images/Miembro equipo 6.avif"
+                  alt="Mateo Guerrero"
+                  class="profile-avatar"
+                />
+                <div>
+                  <h3>Mateo Guerrero</h3>
+                  <span class="team-role">UX/UI Designer</span>
+                  <span class="team-dept">DISEÑO</span>
+                </div>
+              </div>
+              <p>
+                Diseñador UX/UI con enfoque en interfaces sostenibles. Ha
+                diseñado experiencias para más de 15 plataformas de impacto
+                ambiental en la región.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="navbar-brand-link">
+              <img
+                src="../assets/images/logo.png"
+                alt="EcoSort Logo"
+                class="brand-logo-img"
+              />
+              <span class="brand-text"
+                ><span class="text-white">Eco</span
+                ><span class="text-green">Sort</span></span
+              >
+            </a>
+            <p>
+              Plataforma inteligente para la gestión automatizada de residuos
+              industriales mediante Inteligencia Artificial.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Twitter/X">
+                <img src="../assets/icons/twitter.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <img
+                  src="../assets/icons/linkedin-in.svg"
+                  class="icon"
+                  alt=""
+                />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <img src="../assets/icons/instagram.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="GitHub">
+                <img src="../assets/icons/github.svg" class="icon" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>EMPRESA</h4>
+            <ul>
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="servicios.html">Servicios</a></li>
+              <li><a href="simulador.html">Simulador IA</a></li>
+              <li><a href="../index.html">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>SOPORTE</h4>
+            <ul>
+              <li><a href="contacto.html">Contacto</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="documentacion">Documentación</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="faq">FAQ</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="privacidad">Privacidad</a></li>
+            </ul>
+            <div class="footer-contact">
+              <p>
+                <img
+                  src="../assets/icons/icon-mail-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                info@ecosort.ai
+              </p>
+              <p>
+                <img
+                  src="../assets/icons/icon-phone-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                +51 985 938 535
+              </p>
+              <p>
+                <img
+                  src="../assets/icons/icon-location-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                Alfonso Ugarte 930, Cercado de Lima, Lima Centro, Perú
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="sub-footer">
+          <p>© 2026 EcoSort. Todos los derechos reservados.</p>
+          <p>Hecho con 💚 para un planeta más verde</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===========================================================
+         SCRIPTS: main.js (funciones globales) + modales + header
+         ===========================================================
+         Cargamos main.js sin "defer" porque necesita manipular el
+         DOM inmediatamente. modales.js y auth-header.js usan "defer"
+         para cargarse sin bloquear la renderizacion.
+
+         Nosotros.html NO carga slider.js porque no tiene carrusel,
+         ni gemini-config.js/simulador.js porque no tiene simulador.
+         =========================================================== -->
+    <script src="../js/main.js"></script>
+    <script src="../js/modales.js"></script>
+    <script src="../js/auth-header.js" defer></script>
+  </body>
+</html>

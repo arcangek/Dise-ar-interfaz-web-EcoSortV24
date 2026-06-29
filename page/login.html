@@ -1,0 +1,327 @@
+﻿<!doctype html>
+<!-- ================================================================
+     PAGINA: login.html — Inicio de sesion (Split Layout)
+     ================================================================
+     Pagina de autenticacion con diseno de panel dividido:
+       - IZQUIERDA: panel informativo con imagen de fondo, descripcion
+         de la plataforma y lista de beneficios (checkmarks).
+       - DERECHA: formulario de inicio de sesion con email, password,
+         "recordar sesion" y boton de ingreso. Incluye SSO con Google
+         y Microsoft, y enlace a registro.
+
+     ARCHIVOS RELACIONADOS:
+       - scss/pages/_login.scss: estilos especificos de login
+       - js/login.js: logica del formulario (toggle password, etc.)
+       - js/auth-header.js: header
+     ================================================================ -->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- PRELOAD: carga la imagen del panel izquierdo ANTES que
+         cualquier otro recurso, mejorando el tiempo de carga percibido.
+         fetchpriority="high" le da maxima prioridad. -->
+    <link
+      rel="preload"
+      as="image"
+      href="../assets/images/auth-side-optimized.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
+    <meta
+      name="description"
+      content="Inicia sesión en EcoSort para gestionar tus residuos industriales con inteligencia artificial."
+    />
+    <title>Iniciar Sesión | EcoSort</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="icon" href="../assets/images/logo.png" />
+  </head>
+
+  <body class="auth-page">
+    <header class="main-navbar">
+      <div class="container">
+        <a href="../index.html" class="navbar-brand-link">
+          <img
+            src="../assets/images/logo.png"
+            alt="EcoSort Logo"
+            class="brand-logo-img"
+          />
+          <span class="brand-text"
+            ><span class="text-white">Eco</span
+            ><span class="text-green">Sort</span></span
+          >
+        </a>
+
+        <nav>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="simulador.html">Simulador</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="actions">
+          <a href="login.html" class="btn-link">Iniciar sesión</a>
+          <a href="registro.html" class="btn-primary">Registrarse</a>
+        </div>
+
+        <button class="menu-toggle" type="button" aria-label="Menú de navegación">☰</button>
+      </div>
+    </header>
+
+    <!-- ===========================================================
+         LAYOUT SPLIT: Panel informativo + Formulario de login
+         ===========================================================
+         La clase .auth-split crea un layout de dos mitades:
+           - IZQUIERDA: panel oscuro con imagen de fondo, badge
+             "PLATAFORMA DE CLASIFICACION IA", titulo, descripcion
+             y lista de beneficios con checkmarks SVG verdes.
+           - DERECHA: formulario de inicio de sesion con campos
+             de email y contrasena, checkbox "recordar", boton de
+             ingreso, divisores SSO (Google/Microsoft) y enlace
+             a registro.
+
+         El formulario usa la funcion togglePassword() de login.js
+         para mostrar/ocultar la contrasena con el boton del ojo.
+
+         ARCHIVOS RELACIONADOS:
+           - scss/pages/_login.scss: .auth-split, .auth-panel
+           - js/login.js: togglePassword, validacion del formulario
+           - js/auth-header.js: header
+         =========================================================== -->
+    <main>
+      <div class="auth-split">
+        <!-- Panel izquierdo con imagen de fondo que aparece con fade-in -->
+        <section class="auth-panel">
+          <img
+            src="../assets/images/auth-side-optimized.webp"
+            alt="EcoSort Technical Dashboard Visual"
+            width="800"
+            height="1000"
+            fetchpriority="high"
+            decoding="sync"
+            loading="eager"
+            class="side-illustration"
+          />
+          <div class="auth-panel-content">
+            <span class="badge"
+              ><svg
+                class="auth-badge-leaf-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 0 8.5C17 15 15 18 11 20z"
+                ></path>
+                <path d="M19 2c-2.26 4.33-5.27 7.14-8 10"></path>
+              </svg>
+              PLATAFORMA DE CLASIFICACIÓN IA</span
+            >
+            <h2>Accede a tu panel de clasificación técnica</h2>
+            <p>
+              Visualiza métricas de clasificación, genera protocolos de
+              disposición, administra puntos de recolección y exporta reportes
+              ESG automatizados.
+            </p>
+
+            <ul class="auth-features">
+              <li>
+                <svg
+                  class="auth-check-icon"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#19C358"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Dashboard con métricas en tiempo real
+              </li>
+              <li>
+                <svg
+                  class="auth-check-icon"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#19C358"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Reportes ESG automáticos
+              </li>
+              <li>
+                <svg
+                  class="auth-check-icon"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#19C358"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Alertas IoT configurables
+              </li>
+              <li>
+                <svg
+                  class="auth-check-icon"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#19C358"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Soporte prioritario incluido
+              </li>
+            </ul>
+          </div>
+          <p class="auth-copyright">
+            © 2026 EcoSort. Todos los derechos reservados.
+          </p>
+        </section>
+
+        <!-- Columna derecha: formulario de inicio de sesión con SSO (Google/Microsoft) -->
+        <section class="auth-form-col right-login-column login-view-section">
+          <div class="login-form-box">
+            <div class="form-header-group">
+              <h1 class="form-main-title">Iniciar sesión</h1>
+              <p class="form-subtitle">
+                Accede al panel de gestión de clasificación de residuos
+                industriales.
+              </p>
+            </div>
+
+            <form action="#" method="POST">
+              <div class="auth-field login-input-group">
+                <label for="login-email">Email</label>
+                <div class="input-icon-wrapper">
+                  <img
+                    class="input-icon"
+                    src="../assets/icons/icon-mail-white.svg"
+                    alt=""
+                    width="18"
+                    height="18"
+                  />
+                  <input
+                    type="email"
+                    id="login-email"
+                    placeholder="valentina@empresa.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="auth-field login-input-group">
+                <div class="auth-label-row">
+                  <label for="login-password">Contraseña</label>
+                  <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                </div>
+                <div class="password-input-wrapper">
+                  <img
+                    src="../assets/icons/lock.svg"
+                    class="icon input-icon-left"
+                    alt=""
+                  />
+                  <input
+                    type="password"
+                    id="login-password"
+                    placeholder="••••••••••••••••••••••••"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="eye-toggle-btn"
+                    aria-label="Mostrar contraseña"
+                  >
+                    <img
+                      src="../assets/icons/eye.svg"
+                      class="icon password-toggle-eye"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </div>
+
+              <label class="auth-checkbox login-input-group">
+                <input type="checkbox" class="custom-checkbox" checked />
+                Mantenerme conectado
+              </label>
+
+              <button
+                type="submit"
+                class="auth-submit login-submit-btn login-input-group"
+              >
+                Ingresar →
+              </button>
+            </form>
+
+            <!-- Divider + inicio de sesion con Google / Microsoft -->
+            <div class="auth-divider">
+              <span>o continúa con</span>
+            </div>
+
+            <div class="auth-sso">
+              <button type="button" class="sso-btn google-auth-btn">
+                <img
+                  src="../assets/icons/google.svg"
+                  class="icon"
+                  alt="Google"
+                />
+                Google
+              </button>
+              <button type="button" class="sso-btn">
+                <img
+                  src="../assets/icons/icon-microsoft.svg"
+                  alt="Microsoft"
+                  width="18"
+                  height="18"
+                />
+                Microsoft
+              </button>
+            </div>
+
+            <p class="auth-footer-text">
+              ¿No tienes cuenta?
+              <a href="registro.html">Regístrate gratis</a>
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ===========================================================
+         SCRIPTS: main.js + login.js + auth-header.js
+         ===========================================================
+         login.js contiene la logica del formulario: toggle de
+         contrasena (mostrar/ocultar), validacion basica y eventos.
+         No carga modales.js porque login.html no tiene footer con
+         modales (usa un layout split que no incluye footer completo).
+         =========================================================== -->
+    <script src="../js/main.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/auth-header.js" defer></script>
+  </body>
+</html>

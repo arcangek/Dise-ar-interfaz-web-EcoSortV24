@@ -1,0 +1,1208 @@
+﻿<!doctype html>
+<!-- ================================================================
+     PÁGINA: index.html — Inicio (Landing Page Principal)
+     ================================================================
+     Esta es la pagina principal del sitio EcoSort. Contiene:
+       - Hero con carrusel de 3 slides con imagen de fondo y CTA
+       - Seccion de beneficios (IA, rutas, cumplimiento, seguridad)
+       - Seccion de servicios (6 tarjetas con tags)
+       - Seccion de metricas con contadores animados y grafico SVG
+       - Seccion de testimonios (3 tarjetas con estrellas)
+       - CTA final con botones de registro y simulador
+
+     ARCHIVOS RELACIONADOS:
+       - scss/pages/_home.scss: estilos especificos de index.html
+       - scss/layout/_hero.scss: estilos del carrusel
+       - scss/base/_animations.scss: animaciones fade-in
+       - js/main.js: contadores animados, grafico, smooth scroll
+    - js/slider.js: carrusel de slides
+    - js/modales.js: modales del footer
+    - js/auth-header.js: header opaco al scrollear
+      ================================================================ -->
+<html lang="es">
+  <head>
+    <!-- METADATOS: charset define la codificacion de caracteres (UTF-8
+         permite usar tildes, enies, emojis). viewport hace que el sitio
+         sea responsive en dispositivos moviles. description es el texto
+         que aparece en los resultados de Google. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EcoSort – Clasificación de Residuos con Inteligencia Artificial. Transformamos la gestión de residuos usando IA de vanguardia para un planeta más limpio y sostenible."
+    />
+    <!-- TITLE: aparece en la pestania del navegador y en resultados
+         de busqueda. El pipe "|" separa la pagina del nombre del sitio. -->
+    <title>
+      EcoSort | Clasificación de Residuos con Inteligencia Artificial
+    </title>
+    <!-- CSS: main.css es el unico archivo CSS. Se genera con Sass
+         a partir de los partials en scss/. El icono del sitio (favicon)
+         usa el logo de EcoSort en formato PNG. -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" href="assets/images/logo.png" />
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <a href="index.html" class="navbar-brand-link">
+          <img
+            src="assets/images/logo.png"
+            alt="EcoSort Logo"
+            class="brand-logo-img"
+          />
+          <span class="brand-text"
+            ><span class="text-white">Eco</span
+            ><span class="text-green">Sort</span></span
+          >
+        </a>
+
+        <nav>
+          <ul>
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="page/nosotros.html">Nosotros</a></li>
+            <li><a href="page/servicios.html">Servicios</a></li>
+            <li><a href="page/simulador.html">Simulador</a></li>
+            <li><a href="page/contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="actions">
+          <a href="page/login.html" class="btn-link">Iniciar sesión</a>
+          <a href="page/registro.html" class="btn-primary">Registrarse</a>
+        </div>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Menú de navegación"
+        >
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <!-- =============================================================
+         HEADER: Barra de navegacion principal
+         =============================================================
+         El <header> contiene:
+           - Logo + texto "EcoSort" (enlace a index.html)
+           - Navegacion con 5 enlaces (Inicio, Nosotros, Servicios,
+             Simulador, Contacto). La clase "active" marca la pagina actual.
+           - Botones de autenticacion (Iniciar sesion, Registrarse)
+           - Boton hamburguesa (☰) para menu movil
+
+         El header cambia de transparente a opaco al hacer scroll
+         (clase "scrolled" agregada por js/main.js).
+
+         ARCHIVOS RELACIONADOS:
+           - scss/layout/_header.scss: todos los estilos del header
+           - js/main.js: agrega clase "scrolled" al scrollear
+           - js/auth-header.js: funcionalidad extra de autenticacion
+         ============================================================= -->
+    <!-- Hero principal con carrusel de 3 slides -->
+    <main>
+      <section class="hero-carousel" id="hero-carousel">
+        <div class="hero-slides">
+          <article class="hero-slide active">
+            <img
+              src="assets/images/Imagen principal 1.jpg"
+              alt=""
+              class="cover-img hero-bg-img"
+            />
+            <div class="hero-content">
+              <div class="slide-content-wrapper">
+                <span class="badge badge-green">
+                  <img src="assets/icons/leaf.svg" class="icon" alt="" />
+                  INTELIGENCIA ARTIFICIAL VERDE
+                </span>
+                <h1>
+                  Plataforma Industrial de Clasificación de Residuos con IA
+                </h1>
+                <p>
+                  EcoSort es un motor de inteligencia artificial para la
+                  clasificación técnica de residuos industriales, generación de
+                  protocolos de disposición y optimización de rutas de
+                  reciclaje.
+                </p>
+                <div class="hero-buttons">
+                  <a href="page/simulador.html" class="btn-primary"
+                    >Probar Simulador →</a
+                  >
+                  <a href="#value-prop" class="btn-outline">Conocer más</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide">
+            <img
+              src="assets/images/Imagen principal 2.jpg"
+              alt=""
+              class="cover-img hero-bg-img"
+            />
+            <div class="hero-content">
+              <div class="slide-content-wrapper">
+                <span class="badge badge-green">
+                  <img src="assets/icons/leaf.svg" class="icon" alt="" />
+                  IMPACTO AMBIENTAL REAL
+                </span>
+                <h1>Optimizamos la Gestión de Residuos Industriales</h1>
+                <p>
+                  Empresas e instituciones que usan EcoSort reducen errores de
+                  clasificación, generan protocolos ambientales automatizados y
+                  cumplen con normativas ESG.
+                </p>
+                <div class="hero-buttons">
+                  <a href="page/servicios.html" class="btn-primary"
+                    >Conocer Más →</a
+                  >
+                  <a href="#value-prop" class="btn-outline">Conocer más</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide">
+            <img
+              src="assets/images/Imagen principal 3.jpg"
+              alt=""
+              class="cover-img hero-bg-img"
+            />
+            <div class="hero-content">
+              <div class="slide-content-wrapper">
+                <span class="badge badge-green">
+                  <img src="assets/icons/leaf.svg" class="icon" alt="" />
+                  MOTOR DE CLASIFICACIÓN IA
+                </span>
+                <h1>Analiza, Clasifica y Genera Protocolos Automáticamente</h1>
+                <p>
+                  El sistema procesa tipo de material, nivel de toxicidad y
+                  volumen generado para emitir protocolos de disposición,
+                  almacenamiento y reciclaje con respaldo técnico.
+                </p>
+                <div class="hero-buttons">
+                  <a href="page/servicios.html" class="btn-primary"
+                    >Ver Servicios →</a
+                  >
+                  <a href="#value-prop" class="btn-outline">Conocer más</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="hero-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+
+        <div class="hero-scroll">DESCUBRE</div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Beneficios / Propuesta de valor (cards)
+           ===========================================================
+           Muestra 4 tarjetas con iconos que resumen las capacidades
+           principales de EcoSort: IA, rutas, normativa y seguridad.
+           Cada tarjeta tiene un icono SVG, titulo y descripcion.
+
+           Las tarjetas aparecen con animacion fade-in al hacer scroll
+           (IntersectionObserver en js/main.js). El grid es responsive:
+           4 columnas en desktop, 2 en tablet, 1 en movil.
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_home.scss: .benefits, .benefit-card
+             - scss/base/_animations.scss: animacion fade-in-up
+             - js/main.js: IntersectionObserver para fade-in
+           =========================================================== -->
+      <section class="benefits section" id="value-prop">
+        <div class="container">
+          <div class="section-title">
+            <span class="badge">
+              <img src="assets/icons/leaf.svg" class="icon" alt="" />
+              POR QUÉ ECOSORT
+            </span>
+            <h2>Clasificación técnica de residuos industriales</h2>
+            <p>
+              Combinamos inteligencia artificial con criterios ambientales para
+              clasificar residuos, generar protocolos de disposición y optimizar
+              rutas de reciclaje con precisión técnica.
+            </p>
+          </div>
+
+          <div class="benefits-grid">
+            <article class="benefit-card characteristic-card card-ia">
+              <div
+                class="benefit-icon feature-card-icon-wrapper icon-badge-container badge-green"
+              >
+                <img src="assets/icons/microchip.svg" class="icon" alt="" />
+              </div>
+              <h3>Motor de Clasificación IA</h3>
+              <p>
+                Algoritmos de visión computacional y reglas técnicas que
+                clasifican residuos por tipo, toxicidad y volumen con
+                <strong>97.3% de precisión</strong>.
+              </p>
+            </article>
+
+            <article class="benefit-card characteristic-card card-rutas">
+              <div
+                class="benefit-icon feature-card-icon-wrapper icon-badge-container badge-analytics-green"
+              >
+                <img src="assets/icons/chart-line.svg" class="icon" alt="" />
+              </div>
+              <h3>Optimización de Rutas y Costos</h3>
+              <p>
+                Reduce costos operativos de recolección y disposición final
+                <strong>hasta en un 45%</strong> mediante rutas optimizadas y
+                protocolos automatizados.
+              </p>
+            </article>
+
+            <article class="benefit-card characteristic-card card-cumplimiento">
+              <div
+                class="benefit-icon feature-card-icon-wrapper icon-badge-container badge-purple"
+              >
+                <img src="assets/icons/globe.svg" class="icon" alt="" />
+              </div>
+              <h3>Cumplimiento Normativo Ambiental</h3>
+              <p>
+                Genera reportes ESG automatizados y certificados de reciclaje
+                verificados para cumplimiento normativo en
+                <strong>más de 12 ciudades</strong> latinoamericanas.
+              </p>
+            </article>
+
+            <article class="benefit-card characteristic-card card-seguridad">
+              <div
+                class="benefit-icon feature-card-icon-wrapper icon-badge-container badge-orange"
+              >
+                <img src="assets/icons/shield-alt.svg" class="icon" alt="" />
+              </div>
+              <h3>Datos Seguros y Privados</h3>
+              <p>
+                Infraestructura en la nube con certificación
+                <strong>ISO 27001</strong> y protección de datos conforme al
+                RGPD.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Servicios (6 tarjetas con tags)
+           ===========================================================
+           Grid de 6 servicios con icono, tag (IA, DATOS, IOT, etc.),
+           titulo, descripcion y enlace "Saber mas".
+
+           Cada tarjeta tiene un tag de color que indica la categoria
+           tecnologica del servicio. Los iconos son SVG desde assets/icons/.
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_home.scss: .services, .service-card
+             - page/servicios.html: pagina detallada de servicios
+           =========================================================== -->
+      <section class="services section">
+        <div class="container">
+          <div class="section-title">
+            <span class="badge">
+              <img src="assets/icons/leaf.svg" class="icon" alt="" />
+              NUESTROS SERVICIOS
+            </span>
+            <h2>Soluciones de clasificación para residuos industriales</h2>
+            <p>
+              Un ecosistema tecnológico para clasificar residuos, generar
+              protocolos de disposición, optimizar rutas de reciclaje y reportar
+              cumplimiento ambiental.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <img src="assets/icons/recycle.svg" class="icon" alt="" />
+                </div>
+                <span class="service-tag">IA</span>
+              </div>
+              <h3>Clasificación Automática por IA</h3>
+              <p>
+                Motor de visión artificial que clasifica residuos en tiempo real
+                por tipo material, toxicidad y volumen para su correcta
+                disposición.
+              </p>
+              <a href="page/servicios.html" class="service-link">Saber más →</a>
+            </article>
+
+            <article class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <img src="assets/icons/chart-bar.svg" class="icon" alt="" />
+                </div>
+                <span class="service-tag">DATOS</span>
+              </div>
+              <h3>Dashboard de Impacto Ambiental</h3>
+              <p>
+                Panel con métricas de clasificación, residuos procesados, tasas
+                de reciclaje y reportes ESG automatizados para auditoría
+                ambiental.
+              </p>
+              <a href="page/servicios.html" class="service-link">Saber más →</a>
+            </article>
+
+            <article class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <img src="assets/icons/bolt.svg" class="icon" alt="" />
+                </div>
+                <span class="service-tag">IOT</span>
+              </div>
+              <h3>Alertas Técnicas y Monitoreo</h3>
+              <p>
+                Notificaciones automáticas sobre niveles de toxicidad, residuos
+                peligrosos y contenedores con capacidad crítica.
+              </p>
+              <a href="page/servicios.html" class="service-link">Saber más →</a>
+            </article>
+
+            <article class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <img src="assets/icons/users-cog.svg" class="icon" alt="" />
+                </div>
+                <span class="service-tag">GESTIÓN</span>
+              </div>
+              <h3>Gestión de Rutas y Protocolos</h3>
+              <p>
+                Coordina rutas de recolección optimizadas y genera protocolos de
+                disposición basados en el tipo y volumen de residuos.
+              </p>
+              <a href="page/servicios.html" class="service-link">Saber más →</a>
+            </article>
+
+            <article class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <img src="assets/icons/award.svg" class="icon" alt="" />
+                </div>
+                <span class="service-tag">CUMPLIMIENTO</span>
+              </div>
+              <h3>Certificados de Reciclaje y Compliance</h3>
+              <p>
+                Genera certificados verificados de disposición final y reciclaje
+                para cumplimiento normativo ambiental y reporting ESG.
+              </p>
+              <a href="page/servicios.html" class="service-link">Saber más →</a>
+            </article>
+
+            <article class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <img src="assets/icons/code-branch.svg" class="icon" alt="" />
+                </div>
+                <span class="service-tag">API</span>
+              </div>
+              <h3>API para Integración Técnica</h3>
+              <p>
+                Conecta EcoSort con sistemas ERP, plataformas municipales y
+                sistemas de gestión ambiental para automatizar procesos.
+              </p>
+              <a href="page/servicios.html" class="service-link">Saber más →</a>
+            </article>
+          </div>
+
+          <div class="services-footer-cta">
+            <a href="page/servicios.html" class="btn-primary"
+              >Ver todos los servicios →</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Metricas (contadores + grafico SVG interactivo)
+           ===========================================================
+           Dos componentes principales:
+             1. CUATRO CONTADORES: empresas activas (2,840+), precision
+                del modelo (97.3%), toneladas clasificadas (1.2M+),
+                reduccion de CO2 (73%). Se activan al hacer scroll con
+                animacion easeOutCubic (js/main.js).
+             2. GRAFICO SVG: curva de "Residuos Clasificados vs.
+                Reciclados" con 7 meses de datos. Al hacer hover muestra
+                un tooltip con los valores exactos. La animacion de
+                trazado se activa al hacer scroll.
+
+           Cada contador usa atributos data-*:
+             - data-target: valor final del numero
+             - data-suffix: texto despues del numero (%, +, M)
+             - data-decimals: cantidad de decimales
+
+           El grafico SVG usa paths con stroke-dasharray para la
+           animacion de "dibujado" de las lineas.
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_home.scss: .metrics, .dashboard-card, .chart-*
+             - js/main.js: animateCounter(), chart hover/tooltip logic
+           =========================================================== -->
+      <section class="metrics section">
+        <div class="container">
+          <div class="section-title">
+            <span class="badge">
+              <img src="assets/icons/leaf.svg" class="icon" alt="" />
+              IMPACTO REAL
+            </span>
+            <h2>Resultados medibles en clasificación industrial</h2>
+            <p>
+              Volumen de residuos procesados, precisión técnica y reducción de
+              impacto ambiental verificada por nuestros clientes.
+            </p>
+          </div>
+
+          <div
+            class="metrics-grid metrics-counter-grid stats-dark-section stats-section grid-cards-metrics"
+          >
+            <article class="metric-card card-purple">
+              <div class="metric-icon metric-icon-badge">
+                <img src="assets/icons/users.svg" class="icon" alt="" />
+              </div>
+              <h3
+                class="count-metric metric-number"
+                data-target="2840"
+                data-suffix="+"
+                data-decimals="0"
+              >
+                0
+              </h3>
+              <p class="metric-label">Empresas Activas</p>
+            </article>
+
+            <article class="metric-card card-green">
+              <div class="metric-icon metric-icon-badge">
+                <img src="assets/icons/microchip.svg" class="icon" alt="" />
+              </div>
+              <h3
+                class="count-metric metric-number"
+                data-target="97.3"
+                data-suffix="%"
+                data-decimals="1"
+              >
+                0
+              </h3>
+              <p class="metric-label">Precisión del modelo IA</p>
+            </article>
+
+            <article class="metric-card card-amber">
+              <div class="metric-icon metric-icon-badge">
+                <img src="assets/icons/recycle.svg" class="icon" alt="" />
+              </div>
+              <h3
+                class="count-metric metric-number"
+                data-target="1.2"
+                data-suffix="M+"
+                data-decimals="1"
+              >
+                0
+              </h3>
+              <p class="metric-label">Toneladas clasificadas</p>
+            </article>
+
+            <article class="metric-card card-amber">
+              <div class="metric-icon metric-icon-badge">
+                <img src="assets/icons/leaf.svg" class="icon" alt="" />
+              </div>
+              <h3
+                class="count-metric metric-number"
+                data-target="73"
+                data-suffix="%"
+                data-decimals="0"
+              >
+                0
+              </h3>
+              <p class="metric-label">Reducción de huella de CO₂</p>
+            </article>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="dashboard-header">
+              <div class="dashboard-title">
+                <h3>Residuos Clasificados vs. Reciclados</h3>
+                <p>Toneladas procesadas 2025</p>
+              </div>
+              <div class="dashboard-legend">
+                <span class="legend-item">
+                  <span class="legend-dot legend-dot--gray"></span>
+                  Procesados
+                </span>
+                <span class="legend-item">
+                  <span class="legend-dot legend-dot--green"></span>
+                  Reciclados
+                </span>
+              </div>
+            </div>
+            <div class="dashboard-chart">
+              <div class="chart-y">
+                <span>1600</span>
+                <span>1200</span>
+                <span>800</span>
+                <span>400</span>
+                <span>0</span>
+              </div>
+              <div class="chart-area">
+                <svg viewBox="0 0 700 200" preserveAspectRatio="none">
+                  <defs>
+                    <pattern
+                      id="grid"
+                      width="117"
+                      height="25"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <path
+                        d="M 117 0 L 0 0 0 25"
+                        fill="none"
+                        stroke="rgba(255,255,255,0.04)"
+                        stroke-width="1"
+                      />
+                    </pattern>
+
+                    <linearGradient id="gradGray" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(148,163,184,0.25)" />
+                      <stop offset="100%" stop-color="rgba(148,163,184,0)" />
+                    </linearGradient>
+
+                    <linearGradient id="gradGreen" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(25,195,88,0.20)" />
+                      <stop offset="100%" stop-color="rgba(25,195,88,0)" />
+                    </linearGradient>
+                    <filter
+                      id="glow"
+                      x="-50%"
+                      y="-50%"
+                      width="200%"
+                      height="200%"
+                    >
+                      <feGaussianBlur stdDeviation="4" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+
+                  <rect width="700" height="200" fill="url(#grid)" />
+
+                  <path
+                    class="chart-area-fill chart-area-fill--reciclados"
+                    d="M 0 152 C 116 134, 233 112, 350 120 C 466 93, 583 66, 700 38 L 700 200 L 0 200 Z"
+                    fill="url(#gradGreen)"
+                  />
+
+                  <path
+                    class="chart-line chart-line--reciclados"
+                    d="M 0 152 C 116 134, 233 112, 350 120 C 466 93, 583 66, 700 38"
+                    fill="none"
+                    stroke="#19C358"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                  />
+
+                  <path
+                    class="chart-area-fill chart-area-fill--procesados"
+                    d="M 0 133 C 116 112, 233 88, 350 93 C 466 71, 583 44, 700 16 L 700 200 L 0 200 Z"
+                    fill="url(#gradGray)"
+                  />
+
+                  <path
+                    class="chart-line chart-line--procesados"
+                    d="M 0 133 C 116 112, 233 88, 350 93 C 466 71, 583 44, 700 16"
+                    fill="none"
+                    stroke="#94A3B8"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                  />
+                  <line
+                    class="chart-guide"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="200"
+                    stroke="#1E293B"
+                    stroke-width="1"
+                    stroke-dasharray="4,4"
+                    opacity="0"
+                  />
+                  <g class="chart-dots">
+                    <circle
+                      class="chart-dot chart-dot--reciclados"
+                      cx="0"
+                      cy="152"
+                      r="0"
+                      fill="#fff"
+                      stroke="#19C358"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--reciclados"
+                      cx="116"
+                      cy="134"
+                      r="0"
+                      fill="#fff"
+                      stroke="#19C358"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--reciclados"
+                      cx="233"
+                      cy="112"
+                      r="0"
+                      fill="#fff"
+                      stroke="#19C358"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--reciclados"
+                      cx="350"
+                      cy="120"
+                      r="0"
+                      fill="#fff"
+                      stroke="#19C358"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--reciclados"
+                      cx="466"
+                      cy="93"
+                      r="0"
+                      fill="#fff"
+                      stroke="#19C358"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--reciclados"
+                      cx="583"
+                      cy="66"
+                      r="0"
+                      fill="#fff"
+                      stroke="#19C358"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--reciclados"
+                      cx="700"
+                      cy="38"
+                      r="0"
+                      fill="#19C358"
+                      stroke="#19C358"
+                      stroke-width="2"
+                      style="opacity: 1"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--procesados"
+                      data-month="Enero"
+                      data-residuos="490"
+                      data-reciclados="360"
+                      cx="0"
+                      cy="133"
+                      r="0"
+                      fill="#94A3B8"
+                      stroke="#1E293B"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--procesados"
+                      data-month="Febrero"
+                      data-residuos="640"
+                      data-reciclados="490"
+                      cx="116"
+                      cy="112"
+                      r="0"
+                      fill="#94A3B8"
+                      stroke="#1E293B"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--procesados"
+                      data-month="Marzo"
+                      data-residuos="810"
+                      data-reciclados="650"
+                      cx="233"
+                      cy="88"
+                      r="0"
+                      fill="#94A3B8"
+                      stroke="#1E293B"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--procesados"
+                      data-month="Abril"
+                      data-residuos="760"
+                      data-reciclados="590"
+                      cx="350"
+                      cy="93"
+                      r="0"
+                      fill="#94A3B8"
+                      stroke="#1E293B"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--procesados"
+                      data-month="Mayo"
+                      data-residuos="970"
+                      data-reciclados="800"
+                      cx="466"
+                      cy="71"
+                      r="0"
+                      fill="#94A3B8"
+                      stroke="#1E293B"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--procesados"
+                      data-month="Junio"
+                      data-residuos="1,210"
+                      data-reciclados="980"
+                      cx="583"
+                      cy="44"
+                      r="0"
+                      fill="#94A3B8"
+                      stroke="#1E293B"
+                      stroke-width="2"
+                    />
+                    <circle
+                      class="chart-dot chart-dot--procesados"
+                      data-month="Julio"
+                      data-residuos="1,444"
+                      data-reciclados="1,176"
+                      cx="700"
+                      cy="16"
+                      r="0"
+                      fill="#94A3B8"
+                      stroke="#94A3B8"
+                      stroke-width="2"
+                      style="opacity: 1"
+                    />
+                    <circle
+                      class="chart-dot-ring"
+                      cx="0"
+                      cy="133"
+                      r="14"
+                      fill="transparent"
+                      stroke="transparent"
+                      data-month="Enero"
+                      data-residuos="490"
+                      data-reciclados="360"
+                    />
+                    <circle
+                      class="chart-dot-ring"
+                      cx="116"
+                      cy="112"
+                      r="14"
+                      fill="transparent"
+                      stroke="transparent"
+                      data-month="Febrero"
+                      data-residuos="640"
+                      data-reciclados="490"
+                    />
+                    <circle
+                      class="chart-dot-ring"
+                      cx="233"
+                      cy="88"
+                      r="14"
+                      fill="transparent"
+                      stroke="transparent"
+                      data-month="Marzo"
+                      data-residuos="810"
+                      data-reciclados="650"
+                    />
+                    <circle
+                      class="chart-dot-ring"
+                      cx="350"
+                      cy="93"
+                      r="14"
+                      fill="transparent"
+                      stroke="transparent"
+                      data-month="Abril"
+                      data-residuos="760"
+                      data-reciclados="590"
+                    />
+                    <circle
+                      class="chart-dot-ring"
+                      cx="466"
+                      cy="71"
+                      r="14"
+                      fill="transparent"
+                      stroke="transparent"
+                      data-month="Mayo"
+                      data-residuos="970"
+                      data-reciclados="800"
+                    />
+                    <circle
+                      class="chart-dot-ring"
+                      cx="583"
+                      cy="44"
+                      r="14"
+                      fill="transparent"
+                      stroke="transparent"
+                      data-month="Junio"
+                      data-residuos="1,210"
+                      data-reciclados="980"
+                    />
+                    <circle
+                      class="chart-dot-ring"
+                      cx="700"
+                      cy="16"
+                      r="14"
+                      fill="transparent"
+                      stroke="transparent"
+                      data-month="Julio"
+                      data-residuos="1,444"
+                      data-reciclados="1,176"
+                    />
+                  </g>
+                </svg>
+                <div class="chart-tooltip" id="chartTooltip">
+                  <span class="chart-tooltip-month" id="tooltipMonth"></span>
+                  <span class="chart-tooltip-label"
+                    >Procesados : <strong id="tooltipResiduos"></strong
+                  ></span>
+                  <span class="chart-tooltip-value"
+                    >Reciclados : <strong id="tooltipReciclados"></strong
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="chart-x">
+              <span>Ene</span>
+              <span>Feb</span>
+              <span>Mar</span>
+              <span>Abr</span>
+              <span>May</span>
+              <span>Jun</span>
+              <span>Jul</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Testimonios (3 tarjetas de clientes)
+           ===========================================================
+           Muestra 3 testimonios de clientes con:
+             - 5 estrellas (iconos SVG)
+             - Cita textual del cliente
+             - Avatar + nombre + cargo
+
+           Las imagenes usan loading="lazy" para cargarse solo cuando
+           el usuario scrollea hasta ellas (optimizacion de rendimiento).
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_home.scss: .testimonials-section
+           =========================================================== -->
+      <section class="testimonials-section">
+        <div class="testimonials-header-block">
+          <span class="pill-tag-green badge-testimonios"
+            ><img src="assets/icons/leaf.svg" class="icon" alt="" />
+            TESTIMONIOS</span
+          >
+          <h2>Lo que dicen nuestros clientes</h2>
+          <p>
+            Empresas industriales y municipios que utilizan EcoSort para la
+            clasificación técnica de residuos y generación de protocolos
+            ambientales.
+          </p>
+        </div>
+
+        <div class="testimonials-cards-grid">
+          <article class="testimonial-card">
+            <div class="stars-row">
+              <img src="assets/icons/star.svg" class="icon" alt="" /><img
+                src="assets/icons/star.svg"
+                class="icon"
+                alt=""
+              /><img src="assets/icons/star.svg" class="icon" alt="" /><img
+                src="assets/icons/star.svg"
+                class="icon"
+                alt=""
+              /><img src="assets/icons/star.svg" class="icon" alt="" />
+            </div>
+            <p class="testimonial-body-text">
+              "EcoSort redujo nuestros errores de clasificación en un 62% y
+              automatizó la generación de protocolos de disposición. La
+              precisión técnica del sistema transformó nuestra operación
+              ambiental."
+            </p>
+            <div class="user-profile-footer">
+              <img
+                src="assets/images/Avatar1.jpg"
+                alt="Andrés Morales"
+                class="user-avatar-circle"
+                loading="lazy"
+              />
+              <div class="user-meta">
+                <h4>Andrés Morales</h4>
+                <span>Director de Operaciones - Recicla Perú S.A.C.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="stars-row">
+              <img src="assets/icons/star.svg" class="icon" alt="" /><img
+                src="assets/icons/star.svg"
+                class="icon"
+                alt=""
+              /><img src="assets/icons/star.svg" class="icon" alt="" /><img
+                src="assets/icons/star.svg"
+                class="icon"
+                alt=""
+              /><img src="assets/icons/star.svg" class="icon" alt="" />
+            </div>
+            <p class="testimonial-body-text">
+              "Implementamos EcoSort en 8 puntos de recolección municipales y
+              los reportes ESG automatizados nos permitieron certificar la
+              gestión de residuos del distrito en tiempo récord."
+            </p>
+            <div class="user-profile-footer">
+              <img
+                src="assets/images/Avatar2.jpg"
+                alt="Valentina Torres"
+                class="user-avatar-circle"
+                loading="lazy"
+              />
+              <div class="user-meta">
+                <h4>Valentina Torres</h4>
+                <span
+                  >Coordinadora Ambiental - Municipalidad de Miraflores</span
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="stars-row">
+              <img src="assets/icons/star.svg" class="icon" alt="" /><img
+                src="assets/icons/star.svg"
+                class="icon"
+                alt=""
+              /><img src="assets/icons/star.svg" class="icon" alt="" /><img
+                src="assets/icons/star.svg"
+                class="icon"
+                alt=""
+              /><img src="assets/icons/star.svg" class="icon" alt="" />
+            </div>
+            <p class="testimonial-body-text">
+              "La API de EcoSort nos permitió integrar la clasificación técnica
+              de residuos en el sistema municipal en menos de 2 semanas. Los
+              protocolos automatizados nos ahorran 40 horas semanales de trabajo
+              manual en la gestión ambiental."
+            </p>
+            <div class="user-profile-footer">
+              <img
+                src="assets/images/Avatar3.jpg"
+                alt="Carlos Jiménez"
+                class="user-avatar-circle"
+                loading="lazy"
+              />
+              <div class="user-meta">
+                <h4>Carlos Jiménez</h4>
+                <span>Director Ambiental - Municipalidad de Arequipa</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: CTA Final (Call To Action)
+           ===========================================================
+           Ultima seccion antes del footer. Contiene:
+             - Badge "COMIENZA HOY"
+             - Titulo y descripcion motivacional
+             - Dos botones: "Empezar gratis" (a registro.html) y
+               "Probar simulador" (a simulador.html)
+             - Tres checkmarks: sin tarjeta, onboarding guiado,
+               soporte 24/7 (iconos check-circle-stroke)
+
+           Esta seccion aparece en todas las paginas del sitio y es
+           la ultima oportunidad de convertir al visitante en usuario.
+
+           ARCHIVOS RELACIONADOS:
+             - scss/base/_global.scss: estilos de .cta-final
+           =========================================================== -->
+      <section class="cta-final section">
+        <div class="container">
+          <span class="badge">
+            <img src="assets/icons/leaf.svg" class="icon" alt="" />
+            COMIENZA HOY
+          </span>
+          <h2>¿Listo para clasificar residuos con precisión técnica?</h2>
+          <p>
+            Únete a más de 2,800 organizaciones que ya utilizan EcoSort para la
+            clasificación industrial de residuos, generación de protocolos y
+            cumplimiento ambiental automatizado. Prueba gratuita de 30 días.
+          </p>
+          <div class="cta-buttons">
+            <a href="page/registro.html" class="btn-primary"
+              >Empezar gratis →</a
+            >
+            <a href="page/simulador.html" class="btn-outline"
+              >Probar simulador</a
+            >
+          </div>
+          <div class="cta-benefits trust-features-row hero-badges-inline">
+            <div class="trust-feature-item inline-badge-element">
+              <span class="feature-check-icon">
+                <img
+                  src="assets/icons/check-circle-stroke.svg"
+                  class="icon"
+                  alt=""
+                />
+              </span>
+              <p class="feature-text">Sin tarjeta de crédito</p>
+            </div>
+            <div class="trust-feature-item inline-badge-element">
+              <span class="feature-check-icon">
+                <img
+                  src="assets/icons/check-circle-stroke.svg"
+                  class="icon"
+                  alt=""
+                />
+              </span>
+              <p class="feature-text">Onboarding guiado</p>
+            </div>
+            <div class="trust-feature-item inline-badge-element">
+              <span class="feature-check-icon">
+                <img
+                  src="assets/icons/check-circle-stroke.svg"
+                  class="icon"
+                  alt=""
+                />
+              </span>
+              <p class="feature-text">Soporte 24/7</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="navbar-brand-link">
+              <img
+                src="assets/images/logo.png"
+                alt="EcoSort Logo"
+                class="brand-logo-img"
+              />
+              <span class="brand-text"
+                ><span class="text-white">Eco</span
+                ><span class="text-green">Sort</span></span
+              >
+            </a>
+            <p>
+              Plataforma inteligente para la gestión automatizada de residuos
+              industriales mediante Inteligencia Artificial.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Twitter/X">
+                <img src="assets/icons/twitter.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <img src="assets/icons/linkedin-in.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <img src="assets/icons/instagram.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="GitHub">
+                <img src="assets/icons/github.svg" class="icon" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>EMPRESA</h4>
+            <ul>
+              <li><a href="page/nosotros.html">Nosotros</a></li>
+              <li><a href="page/servicios.html">Servicios</a></li>
+              <li><a href="page/simulador.html">Simulador IA</a></li>
+              <li><a href="index.html">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>SOPORTE</h4>
+            <ul>
+              <li><a href="page/contacto.html">Contacto</a></li>
+              <li>
+                <a href="#" class="modal-trigger" data-modal="documentacion">Documentación</a>
+              </li>
+              <li>
+                <a href="#" class="modal-trigger" data-modal="faq">FAQ</a>
+              </li>
+              <li>
+                <a href="#" class="modal-trigger" data-modal="privacidad">Privacidad</a>
+              </li>
+            </ul>
+            <div class="footer-contact">
+              <p>
+                <img
+                  src="assets/icons/icon-mail-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                info@ecosort.ai
+              </p>
+              <p>
+                <img
+                  src="assets/icons/icon-phone-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                +51 985 938 535
+              </p>
+              <p>
+                <img
+                  src="assets/icons/icon-location-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                Alfonso Ugarte 930, Cercado de Lima, Lima Centro, Perú
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="sub-footer">
+          <p>© 2026 EcoSort. Todos los derechos reservados.</p>
+          <p>Hecho con 💚 para un planeta más verde</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===========================================================
+         SCRIPTS: JavaScript al final del body
+         ===========================================================
+         Los scripts se cargan al final del <body> por dos razones:
+           1. No bloquean la renderizacion del HTML (mejora el rendimiento)
+           2. El DOM ya existe cuando se ejecutan
+
+         ORDEN DE CARGA:
+           1. main.js — funciones globales (menu, scroll, contadores, grafico)
+           2. slider.js — carrusel de slides del hero
+           3. modales.js — modales de documentacion, FAQ, privacidad
+           4. auth-header.js (defer) — comportamiento del header
+
+         "defer" significa que el script se ejecuta cuando el HTML
+         termina de parsearse, incluso si se carga antes. Es util
+         para scripts que no son criticos para la primera impresion.
+         =========================================================== -->
+    <script src="js/main.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/modales.js"></script>
+    <script src="js/auth-header.js" defer></script>
+  </body>
+</html>

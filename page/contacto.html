@@ -1,0 +1,556 @@
+<!doctype html>
+<!-- ================================================================
+     PAGINA: contacto.html — Formulario de contacto e informacion
+     ================================================================
+     Esta pagina permite a los usuarios contactar al equipo:
+       - Hero con video de fondo
+       - Formulario de contacto con 4 campos (nombre, email, org, mensaje)
+         y selector de tema (pills de radio buttons)
+       - Sidebar con informacion: email, telefono, direccion, horario,
+         redes sociales (4 cuentas) y mapa de Google Maps embebido
+
+     ARCHIVOS RELACIONADOS:
+       - scss/pages/_contacto.scss: estilos especificos
+        - js/auth-header.js: header
+      ================================================================ -->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contacta al equipo de EcoSort para demos, soporte, alianzas y consultoría ambiental. Estamos ubicados en Alfonso Ugarte 930, Lima, Perú."
+    />
+    <title>Contacto | EcoSort</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="icon" href="../assets/images/logo.png" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="../index.html" class="navbar-brand-link">
+          <img
+            src="../assets/images/logo.png"
+            alt="EcoSort Logo"
+            class="brand-logo-img"
+            loading="lazy"
+          />
+          <span class="brand-text"
+            ><span class="text-white">Eco</span
+            ><span class="text-green">Sort</span></span
+          >
+        </a>
+
+        <nav>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="simulador.html">Simulador</a></li>
+            <li><a href="contacto.html" class="active">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="actions">
+          <a href="login.html" class="btn-link">Iniciar sesión</a>
+          <a href="registro.html" class="btn-primary">Registrarse</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menú de navegación">☰</button>
+      </div>
+    </header>
+
+    <!-- ===========================================================
+         HEADER + HERO DE CONTACTO
+         ===========================================================
+         Header identico al de todas las paginas. El hero usa un
+         VIDEO de fondo (contacto.mp4) con el mismo patron que la
+         pagina de servicios: autoplay, muted, loop, playsinline.
+
+         El texto del hero invita a contactar al equipo tecnico
+         para demos, soporte y consultoria.
+
+         ARCHIVOS RELACIONADOS:
+           - scss/pages/_contacto.scss: .contacto-hero
+         =========================================================== -->
+    <main>
+      <section class="contacto-hero">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+          <source src="../assets/video/contacto.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+          <div class="contacto-hero-content">
+            <span class="badge badge-green"
+              ><img src="../assets/icons/leaf.svg" class="icon" alt="" />
+              HABLEMOS</span
+            >
+            <h1>Contacta al equipo técnico de EcoSort</h1>
+            <p>
+              Estamos aquí para resolver dudas técnicas, agendar demos de la
+              plataforma y explorar cómo EcoSort puede integrarse en tu
+              operación de gestión de residuos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Formulario de contacto + Sidebar
+           ===========================================================
+           Layout de dos columnas:
+             - IZQUIERDA (.contacto-form-card): formulario con campos
+               de nombre, email, organizacion, selector de tema (pills
+               de radio button) y mensaje. Incluye boton con icono
+               SVG de avion de papel.
+             - DERECHA (.contacto-sidebar): contiene 3 tarjetas:
+               1) Informacion de contacto (email, telefono, direccion,
+                  horario) con iconos SVG personalizados.
+               2) Redes sociales (Twitter, LinkedIn, Instagram, GitHub)
+                  con handles.
+               3) Mapa de Google Maps embebido en iframe.
+
+           El formulario NO tiene funcionalidad backend real (es
+           solo maquetacion frontend).
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_contacto.scss: .contacto-grid, .contacto-form-card
+           =========================================================== -->
+      <section class="contacto-main section">
+        <div class="container">
+          <div class="contacto-grid">
+            <div class="contacto-form-card">
+              <div class="contacto-form-header">
+                <h2>Envíanos un mensaje</h2>
+                <p>
+                  Consultas técnicas, demos, alianzas y soporte. Respondemos en
+                  menos de 24 horas hábiles.
+                </p>
+              </div>
+              <hr class="contacto-divider" />
+
+              <form>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="nombre"
+                      >Nombre completo <span class="required">*</span></label
+                    >
+                    <div class="input-icon-wrapper">
+                      <img
+                        class="input-icon"
+                        src="../assets/icons/icon-user.svg"
+                        alt=""
+                        width="18"
+                        height="18"
+                      />
+                      <input
+                        type="text"
+                        id="nombre"
+                        placeholder="Valentina Torres"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email"
+                      >Email <span class="required">*</span></label
+                    >
+                    <div class="input-icon-wrapper">
+                      <img
+                        class="input-icon"
+                        src="../assets/icons/icon-mail.svg"
+                        alt=""
+                        width="18"
+                        height="18"
+                      />
+                      <input
+                        type="email"
+                        id="email"
+                        placeholder="valentina@empresa.com"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="org">Organización</label>
+                  <div class="input-icon-wrapper">
+                    <img
+                      class="input-icon"
+                      src="../assets/icons/icon-phone.svg"
+                      alt=""
+                      width="18"
+                      height="18"
+                    />
+                    <input
+                      type="text"
+                      id="org"
+                      placeholder="Municipalidad de Miraflores"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label
+                    >¿En qué te podemos ayudar?
+                    <span class="required">*</span></label
+                  >
+                  <div class="topic-pills">
+                    <label class="pill-option">
+                      <input type="radio" name="topic" value="demostraciones" />
+                      <span class="pill">Demostraciones del producto</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="topic" value="alianzas" />
+                      <span class="pill">Alianzas estratégicas</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="topic" value="soporte" />
+                      <span class="pill">Soporte técnico</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="topic" value="consultoria" />
+                      <span class="pill">Consultoría ambiental</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="topic" value="prensa" />
+                      <span class="pill">Prensa & medios</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="topic" value="otro" />
+                      <span class="pill">Otro</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="mensaje"
+                    >Mensaje <span class="required">*</span></label
+                  >
+                  <textarea
+                    id="mensaje"
+                    placeholder="Cuéntanos sobre tu proyecto y cómo podemos ayudarte..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="contacto-submit">
+                  <svg
+                    class="btn-icon"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                  <span>Enviar mensaje</span>
+                </button>
+              </form>
+            </div>
+
+            <aside class="contacto-sidebar">
+              <div class="contacto-side-card">
+                <h3>Información de contacto</h3>
+                <div class="contacto-info-item">
+                  <span class="contacto-icon-circle">
+                    <svg
+                      
+width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#11783B"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <polyline points="2,4 12,13 22,4" />
+                    </svg>
+                  </span>
+                  <div>
+                    <span class="contacto-label">Email general</span>
+                    <strong>info@ecosort.ai</strong>
+                  </div>
+                </div>
+                <div class="contacto-info-item">
+                  <span class="contacto-icon-circle">
+                    <svg
+                      
+width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#11783B"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                      />
+                    </svg>
+                  </span>
+                  <div>
+                    <span class="contacto-label">Teléfono</span>
+                    <strong>+51 985 938 535</strong>
+                  </div>
+                </div>
+                <div class="contacto-info-item">
+                  <span class="contacto-icon-circle">
+                    <svg
+                      
+width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#11783B"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                      />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </span>
+                  <div>
+                    <span class="contacto-label">Oficina principal</span>
+                    <strong
+                      >Alfonso Ugarte 930, Cercado de Lima, Lima Centro,
+                      Perú</strong
+                    >
+                  </div>
+                </div>
+                <div class="contacto-info-item">
+                  <span class="contacto-icon-circle">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#11783B"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </span>
+                  <div>
+                    <span class="contacto-label">Horario de atención</span>
+                    <strong>Lun — Vie: 8:00 AM — 6:00 PM PET</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contacto-side-card">
+                <h3>Síguenos en redes</h3>
+                <div class="contacto-social-item twitter">
+                  <span class="unified-social-btn">
+                    <img
+                      src="../assets/icons/twitter.svg"
+                      alt="Twitter X"
+                      width="18"
+                      height="18"
+                    />
+                  </span>
+                  <div>
+                    <strong>Twitter / X</strong>
+                    <span class="contacto-handle">@EcoSortAI</span>
+                  </div>
+                </div>
+                <div class="contacto-social-item linkedin">
+                  <span class="unified-social-btn">
+                    <img
+                      src="../assets/icons/linkedin-in.svg"
+                      alt="LinkedIn"
+                      width="18"
+                      height="18"
+                    />
+                  </span>
+                  <div>
+                    <strong>LinkedIn</strong>
+                    <span class="contacto-handle">EcoSort Technologies</span>
+                  </div>
+                </div>
+                <div class="contacto-social-item instagram">
+                  <span class="unified-social-btn">
+                    <img
+                      src="../assets/icons/instagram.svg"
+                      class="icon"
+                      alt="Instagram"
+                    />
+                  </span>
+                  <div>
+                    <strong>Instagram</strong>
+                    <span class="contacto-handle">@ecosort.ai</span>
+                  </div>
+                </div>
+                <div class="contacto-social-item github">
+                  <span class="unified-social-btn">
+                    <img
+                      src="../assets/icons/github.svg"
+                      alt="GitHub"
+                      width="18"
+                      height="18"
+                    />
+                  </span>
+                  <div>
+                    <strong>GitHub</strong>
+                    <span class="contacto-handle">EcoSort-Labs</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contacto-map-card">
+                <span class="badge badge-green map-tag-capsule"
+                  ><svg
+                    
+width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  MAPA DE UBICACIÓN</span
+                >
+                <div class="contacto-map-iframe">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.8719489529517!2d-77.04445172493872!3d-12.05233038818494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8cf7f857d4f%3A0xa442b001cf5154c6!2sInstituto%20de%20Educaci%C3%B3n%20Superior%20Tecnol%C3%B3gico%20P%C3%BAblico%20Argentina!5e0!3m2!1ses-419!2spe!4v1781925491631!5m2!1ses-419!2spe"
+                    width="100%"
+                    height="320"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  >
+                  </iframe>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="navbar-brand-link">
+              <img
+                src="../assets/images/logo.png"
+                alt="EcoSort Logo"
+                class="brand-logo-img"
+              />
+              <span class="brand-text"
+                ><span class="text-white">Eco</span
+                ><span class="text-green">Sort</span></span
+              >
+            </a>
+            <p>
+              Plataforma inteligente para la gestión automatizada de residuos
+              industriales mediante Inteligencia Artificial.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Twitter/X">
+                <img src="../assets/icons/twitter.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <img
+                  src="../assets/icons/linkedin-in.svg"
+                  class="icon"
+                  alt=""
+                />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <img src="../assets/icons/instagram.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="GitHub">
+                <img src="../assets/icons/github.svg" class="icon" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>EMPRESA</h4>
+            <ul>
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="servicios.html">Servicios</a></li>
+              <li><a href="simulador.html">Simulador IA</a></li>
+              <li><a href="../index.html">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>SOPORTE</h4>
+            <ul>
+              <li><a href="contacto.html">Contacto</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="documentacion">Documentación</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="faq">FAQ</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="privacidad">Privacidad</a></li>
+            </ul>
+            <div class="footer-contact">
+              <p>
+                <img
+                  src="../assets/icons/icon-mail-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                info@ecosort.ai
+              </p>
+              <p>
+                <img
+                  src="../assets/icons/icon-phone-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                +51 985 938 535
+              </p>
+              <p>
+                <img
+                  src="../assets/icons/icon-location-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                Alfonso Ugarte 930, Cercado de Lima, Lima Centro, Perú
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="sub-footer">
+          <p>© 2026 EcoSort. Todos los derechos reservados.</p>
+          <p>Hecho con 💚 para un planeta más verde</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===========================================================
+         SCRIPTS: main.js + modales.js + auth-header.js
+         ===========================================================
+         contacto.html carga los scripts globales mas el de modales
+         (para los modales del footer). No carga slider.js ni
+         login.js/registro.js porque no los necesita.
+
+         El formulario de contacto NO tiene JavaScript asociado
+         (es HTML/CSS puro, sin validacion frontend).
+         =========================================================== -->
+    <script src="../js/main.js"></script>
+    <script src="../js/modales.js"></script>
+    <script src="../js/auth-header.js" defer></script>
+  </body>
+</html>

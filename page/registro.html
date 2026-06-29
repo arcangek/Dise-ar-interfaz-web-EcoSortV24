@@ -1,0 +1,367 @@
+﻿<!doctype html>
+<!-- ================================================================
+     PAGINA: registro.html — Registro de usuarios (Stepper multi-paso)
+     ================================================================
+     Pagina de registro con diseno de panel dividido (mismo layout
+     que login.html):
+       - IZQUIERDA: panel informativo con beneficios del registro
+       - DERECHA: formulario multi-step con:
+           Paso 1: datos personales (nombre, email, organizacion)
+           Paso 2: sector (pills de radio: privada, municipio, ONG,
+                   universidad, otra)
+           Paso 3: seleccion de plan (Starter, Business, Enterprise)
+
+     ARCHIVOS RELACIONADOS:
+       - scss/pages/_registro.scss: estilos especificos de registro
+       - js/registro.js: logica del stepper y formulario
+       - js/auth-header.js: header
+     ================================================================ -->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="preload"
+      as="image"
+      href="../assets/images/auth-side-optimized.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
+    <meta
+      name="description"
+      content="Regístrate en EcoSort y comienza a gestionar residuos industriales con inteligencia artificial. Prueba gratuita de 30 días."
+    />
+    <title>Registrarse | EcoSort</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="icon" href="../assets/images/logo.png" />
+  </head>
+
+  <body class="auth-page">
+    <header class="main-navbar">
+      <div class="container">
+        <a href="../index.html" class="navbar-brand-link">
+          <img
+            src="../assets/images/logo.png"
+            alt="EcoSort Logo"
+            class="brand-logo-img"
+          />
+          <span class="brand-text"
+            ><span class="text-white">Eco</span
+            ><span class="text-green">Sort</span></span
+          >
+        </a>
+
+        <nav>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="simulador.html">Simulador</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="actions">
+          <a href="login.html" class="btn-link">Iniciar sesión</a>
+          <a href="registro.html" class="btn-primary">Registrarse</a>
+        </div>
+
+        <button class="menu-toggle" type="button" aria-label="Menú de navegación">☰</button>
+      </div>
+    </header>
+
+    <!-- ===========================================================
+         LAYOUT SPLIT + FORMULARIO DE REGISTRO (Stepper)
+         ===========================================================
+         Mismo layout que login.html (.auth-split):
+           - IZQUIERDA: panel con badge "PRUEBA GRATIS 30 DIAS"
+             y lista de beneficios.
+           - DERECHA: formulario multi-step con stepper visual
+             (numero 1 + "Datos personales" + barra de progreso).
+             Campos: nombre, email, organizacion, sector (pills de
+             radio: privada, municipio, ONG, universidad, otra),
+             plan (Starter/Business/Enterprise en tarjetas con
+             radio).
+
+         El stepper avanza de paso 1 (datos) a paso 2 (contrasena)
+         a paso 3 (exito) usando la logica en registro.js.
+
+         ARCHIVOS RELACIONADOS:
+           - scss/pages/_registro.scss: .registration-stepper, .reg-plans
+           - js/registro.js: stepper logic, validacion
+           - js/auth-header.js: header
+         =========================================================== -->
+    <main>
+      <div class="auth-split">
+        <!-- Panel izquierdo con imagen de fondo y lista de beneficios -->
+        <section class="auth-panel">
+          <img
+            src="../assets/images/auth-side-optimized.webp"
+            alt="EcoSort Technical Dashboard Visual"
+            width="800"
+            height="1000"
+            fetchpriority="high"
+            decoding="sync"
+            loading="eager"
+            class="side-illustration"
+          />
+          <div class="auth-panel-content">
+            <span class="badge"
+              ><img src="../assets/icons/leaf.svg" class="icon" alt="" /> PRUEBA
+              GRATIS 30 DÍAS</span
+            >
+            <h2>Únete a más de 2,800 organizaciones</h2>
+            <p>
+              Configura tu cuenta en minutos y empieza a clasificar residuos
+              industriales con el motor de IA de EcoSort.
+            </p>
+
+            <ul class="auth-features">
+              <li>
+                <svg
+                  class="auth-check-icon"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#19C358"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Sin tarjeta de crédito requerida
+              </li>
+              <li>
+                <svg
+                  class="auth-check-icon"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#19C358"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Acceso completo al dashboard
+              </li>
+              <li>
+                <svg
+                  class="auth-check-icon"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#19C358"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Soporte por email incluido
+              </li>
+              <li>
+                <svg
+                  class="auth-check-icon"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#19C358"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Cancelación cuando quieras
+              </li>
+            </ul>
+          </div>
+          <p class="auth-copyright">
+            © 2026 EcoSort. Todos los derechos reservados.
+          </p>
+        </section>
+
+        <!-- Columna derecha: formulario multi-step con sector pills y selección de plan -->
+        <section
+          class="auth-form-col right-login-column registration-view-section"
+        >
+          <div class="login-form-box registration-form-box">
+            <div class="registration-stepper">
+              <span class="step-badge">1</span>
+              <span class="step-text-label">Datos personales</span>
+              <div class="step-progress-bar-container">
+                <div class="step-progress-fill-line"></div>
+              </div>
+            </div>
+
+            <div class="form-header-group">
+              <h1 class="form-main-title">Crea tu cuenta</h1>
+            </div>
+
+            <form action="#" method="POST">
+              <div class="auth-field login-input-group">
+                <label for="reg-nombre"
+                  >Nombre completo <span class="required">*</span></label
+                >
+                <div class="input-icon-wrapper">
+                  <img
+                    class="input-icon"
+                    src="../assets/icons/icon-user-white.svg"
+                    alt=""
+                    width="18"
+                    height="18"
+                  />
+                  <input
+                    type="text"
+                    id="reg-nombre"
+                    placeholder="Valentina Torres"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="auth-field login-input-group">
+                <label for="reg-email"
+                  >Email <span class="required">*</span></label
+                >
+                <div class="input-icon-wrapper">
+                  <img
+                    class="input-icon"
+                    src="../assets/icons/icon-mail-white.svg"
+                    alt=""
+                    width="18"
+                    height="18"
+                  />
+                  <input
+                    type="email"
+                    id="reg-email"
+                    placeholder="tu@empresa.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="auth-field login-input-group">
+                <label for="reg-org"
+                  >Organización <span class="required">*</span></label
+                >
+                <div class="input-icon-wrapper">
+                  <img
+                    class="input-icon"
+                    src="../assets/icons/icon-building.svg"
+                    alt=""
+                    width="18"
+                    height="18"
+                  />
+                  <input
+                    type="text"
+                    id="reg-org"
+                    placeholder="Empresa o institución"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="auth-field login-input-group">
+                <label>Sector <span class="required">*</span></label>
+                <div class="sector-pills-group">
+                  <label>
+                    <input type="radio" name="sector" value="privada" checked />
+                    <span class="sector-pill-label">Empresa privada</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="sector" value="municipio" />
+                    <span class="sector-pill-label">Municipio / Gobierno</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="sector" value="ong" />
+                    <span class="sector-pill-label">ONG / Fundación</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="sector" value="universidad" />
+                    <span class="sector-pill-label">Universidad</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="sector" value="otra" />
+                    <span class="sector-pill-label">Otra</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="auth-field login-input-group">
+                <label>Plan</label>
+                <div class="reg-plans">
+                  <label class="plan-option-card">
+                    <input
+                      type="radio"
+                      name="plan"
+                      class="plan-radio-custom"
+                      value="starter"
+                      checked
+                    />
+                    <span class="plan-card-text-group">
+                      <strong>Starter</strong>
+                      <span class="plan-tag">gratis 30 días</span>
+                    </span>
+                  </label>
+                  <label class="plan-option-card">
+                    <input
+                      type="radio"
+                      name="plan"
+                      class="plan-radio-custom"
+                      value="business"
+                    />
+                    <span class="plan-card-text-group">
+                      <strong>Business</strong>
+                    </span>
+                  </label>
+                  <label class="plan-option-card">
+                    <input
+                      type="radio"
+                      name="plan"
+                      class="plan-radio-custom"
+                      value="enterprise"
+                    />
+                    <span class="plan-card-text-group">
+                      <strong>Enterprise</strong>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="auth-submit login-submit-btn login-input-group"
+              >
+                Continuar →
+              </button>
+            </form>
+
+            <p class="auth-footer-text">
+              ¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a>
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ===========================================================
+         SCRIPTS: main.js + registro.js + auth-header.js
+         ===========================================================
+         registro.js maneja el stepper multi-paso: avanzar entre
+         "Datos personales", "Contrasena" y "Exito", con validacion
+         de campos en cada paso. No carga modales.js porque
+         registro.html usa layout split sin footer completo.
+         =========================================================== -->
+    <script src="../js/main.js"></script>
+    <script src="../js/registro.js"></script>
+    <script src="../js/auth-header.js" defer></script>
+  </body>
+</html>

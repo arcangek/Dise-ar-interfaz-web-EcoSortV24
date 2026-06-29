@@ -1,0 +1,63 @@
+
+
+
+// MIXINS — Fragmentos de CSS reutilizables
+// ============================================================
+// Los mixins son como "funciones" de Sass: escribes el codigo
+// una vez y lo reusas con @include. Evitan repetir las mismas
+// propiedades en 10 lugares distintos.
+//
+// Cada mixin resuelve un problema especifico:
+//   hero-video       → video de fondo absoluto
+//   hero-overlay     → capa oscura semitransparente
+//   dark-neon-glow   → brillo neon para iconos en fondos oscuros
+//   light-pastel-box → caja circular con color pastel
+//
+// ARCHIVOS QUE USAN ESTOS MIXINS:
+//   - _hero.scss, _home.scss, _servicios.scss, _contacto.scss
+//   - _simulador.scss, _nosotros.scss, _login.scss
+// ============================================================
+
+// VIDEO DE FONDO
+@mixin hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+// OVERLAY
+@mixin hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 1;
+}
+
+@mixin dark-neon-glow($color) {
+    color: $color !important;
+    fill: $color !important;
+    filter: drop-shadow(0 0 8px rgba($color, 0.6));
+}
+
+@mixin light-pastel-box($color) {
+    background-color: rgba($color, 0.08) !important;
+    color: $color !important;
+    fill: $color !important;
+    border-radius: 50%;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+
+    svg, img, i {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+        flex-shrink: 0 !important;
+    }
+}

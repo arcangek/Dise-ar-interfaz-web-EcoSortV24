@@ -1,0 +1,87 @@
+// VARIABLES — Todas las variables del proyecto en un solo archivo
+// ============================================================
+// Convencion de nombres en espanol (metodologia del profesor):
+//   $verde, $azul-oscuro, $gris, $fuente, $sombra-*, etc.
+// Esto hace que el codigo sea legible para estudiantes
+// hispanohablantes sin necesidad de traducir mentalmente.
+//
+// Todas las variables se importan via _variables.scss a main.scss
+// y estan disponibles en todos los partials gracias a @use.
+//
+// ARCHIVOS QUE USAN ESTAS VARIABLES:
+//   - Todos los partials en scss/ (cada uno usa @use 'abstracts')
+// ============================================================
+
+// Colores principales de EcoSort
+$verde: #00C853;
+$verde-oscuro: #009624;
+
+// Colores de fondo
+$azul-oscuro: #0B1320;
+$azul-claro: #111827;
+$azul-footer: #070C14;
+$azul-secundario: #0f172a;
+
+$blanco: #FFFFFF;
+
+// Grises
+$gris: #F8F9FA;
+$gris-claro: #e2e8f0;
+$gris-medio: #94a3b8;
+$gris-oscuro: #475569;
+$gris-texto: #64748B;
+
+$texto: #334155;
+
+// Colores auxiliares
+$verde-alterno: #19C358;
+$verde-hover: #22C55E;
+$borde-oscuro: #1E293B;
+$rojo-error: #f44336;
+
+// FUENTE
+$fuente: "Segoe UI", "Arial", sans-serif;
+
+// LAYOUT
+$contenedor: 1200px;
+$espacio-seccion: 100px;
+$espacio-movil: 60px;
+$altura-header: 80px;
+
+// BORDES REDONDEADOS
+$radio-pequeno: 8px;
+$radio-medio: 12px;
+$radio-grande: 20px;
+
+// SOMBRAS
+$sombra-pequena: 0 2px 10px rgba(0,0,0,.08);
+$sombra-medio: 0 10px 30px rgba(0,0,0,.12);
+$sombra-grande: 0 20px 50px rgba(0,0,0,.18);
+
+// ICONOS MATRIX (4 colores semanticos)
+$icono-verde: #00E676;
+$icono-cian: #38BDF8;
+$icono-purpura: #A855F7;
+$icono-ambar: #F59E0B;
+
+// COLOR PLACEHOLDER
+$color-placeholder: #64748B;
+
+// TRANSICION
+$transicion: .3s ease;
+
+// Z-INDEX
+$z-header: 1000;
+$z-menu: 1100;
+$z-modal: 1200;
+
+// GRADIENTE
+$gradiente-verde: linear-gradient(135deg, $verde, $verde-oscuro);
+
+// TAMAÑOS DE TITULOS (clamp)
+$h1-min: 2.2rem;
+$h1-max: 3.5rem;
+$h2-min: 1.7rem;
+$h2-max: 2.5rem;
+$h3-min: 1.1rem;
+$h3-max: 1.3rem;

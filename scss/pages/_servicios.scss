@@ -1,0 +1,521 @@
+// SERVICIOS — Estilos exclusivos de servicios.html
+// ============================================================
+// Pagina de servicios con 4 secciones principales:
+//   .services-hero — hero con video de fondo
+//   .modules — 3 modulos principales en zigzag layout
+//   .extras — 6 tarjetas de funcionalidades adicionales
+//   .process — 5 pasos del proceso con numeros y linea conectora
+//   .pricing — 3 planes de precios (Starter, Business, Enterprise)
+//
+// TECNICAS DESTACADAS:
+//   - Zigzag layout con clase .reverse y direction: rtl
+//   - Module hover con scale(1.02) + translateY(-8px)
+//   - Pseudo-elemento ::before en .steps para la linea conectora
+//   - Tarjeta .popular con scale(1.04) y glow verde
+//   - light-pastel-box() mixin para iconos circulares
+//
+// ARCHIVOS RELACIONADOS:
+//   - _mixins.scss: hero-video, hero-overlay, light-pastel-box
+//   - _variables.scss: $icono-verde, $icono-cian, $icono-ambar
+// ============================================================
+
+
+.services-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 160px 0 100px;
+    background: $azul-oscuro; // fallback si el video no carga
+    background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 30px 30px;
+
+    .hero-video { @include hero-video; }
+    .hero-overlay { @include hero-overlay; }
+
+    .services-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 750px;
+
+        .badge { margin-bottom: 20px; }
+
+        h1 {
+            color: $blanco;
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: 800;
+            margin: 20px 0;
+            line-height: 1.1;
+        }
+
+        p {
+            color: rgba(255,255,255,.7);
+            font-size: 1.1rem;
+            max-width: 650px;
+            line-height: 1.7;
+        }
+    }
+}
+
+
+
+.modules {
+    background: $blanco;
+
+    .module-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        margin-bottom: 80px;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+
+        &:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(5, 168, 72, 0.15);
+        }
+
+        &:last-child { margin-bottom: 0; }
+
+        
+        &.reverse { direction: rtl; .module-text { direction: ltr; } }
+    }
+
+    .module-text {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h3 { font-size: 1.8rem; margin-bottom: 20px; color: $azul-oscuro; }
+        p { color: $gris-oscuro; line-height: 1.7; margin-bottom: 25px; }
+
+        .check-list {
+            list-style: none;
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 0;
+                font-size: .95rem;
+                color: $gris-oscuro;
+            }
+
+            
+            li::before {
+                content: "✓";
+                width: 24px;
+                height: 24px;
+                min-width: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: .85rem;
+                font-weight: 700;
+                border-radius: 50%;
+                background: rgba($verde,.12);
+                color: $verde;
+            }
+
+            &.check-green li::before { background: rgba($icono-verde,.12); color: $icono-verde; }
+            &.check-blue li::before { background: rgba($icono-cian,.12); color: $icono-cian; }
+            &.check-orange li::before { background: rgba($icono-ambar,.12); color: $icono-ambar; }
+        }
+
+        
+        .module-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+
+            .icon { width: 22px; height: 22px; }
+
+            &.icon-green-square {
+                @include light-pastel-box($icono-verde);
+                background-color: rgba(0, 230, 118, 0.12) !important;
+                border: 1px solid rgba(0, 230, 118, 0.3) !important;
+            }
+            &.icon-blue-circle {
+                @include light-pastel-box($icono-cian);
+                background-color: rgba(56, 189, 248, 0.12) !important;
+                border: 1px solid rgba(56, 189, 248, 0.3) !important;
+                box-shadow: 0 0 12px rgba(56, 189, 248, 0.08) !important;
+            }
+            &.icon-orange-circle { @include light-pastel-box($icono-ambar); }
+
+            img[src*="chart-blue"] {
+                transition: filter .3s ease;
+            }
+
+            &:hover img[src*="chart-blue"] {
+                filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.75));
+            }
+        }
+    }
+
+    .module-image {
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: $radio-grande;
+            display: block;
+        }
+
+        
+        .module-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 18px;
+            border-radius: $radio-medio;
+            background: rgba($azul-oscuro,.75);
+            backdrop-filter: blur(10px);
+            color: $blanco;
+            font-size: .85rem;
+            font-weight: 600;
+        }
+    }
+}
+
+
+.extras {
+    background: $gris;
+
+    .extras-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        align-items: stretch;
+    }
+
+    .extra-card {
+        display: flex;
+        flex-direction: column;
+        background: $blanco;
+        border-radius: $radio-grande;
+        padding: 30px;
+        transition: $transicion;
+        border: 1px solid transparent;
+
+        .extra-icon {
+            @include light-pastel-box($icono-verde);
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+
+            .icon { width: 22px; height: 22px; }
+        }
+
+        h3 { font-size: 1.1rem; margin-bottom: 10px; color: $azul-oscuro; }
+
+        p { color: $gris-oscuro; font-size: .9rem; line-height: 1.6; margin-top: auto; }
+
+        
+        &:hover { transform: translateY(-6px); box-shadow: $sombra-medio; border-color: $verde; }
+    }
+}
+
+
+
+.process {
+    background: $azul-oscuro;
+    background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 30px 30px;
+
+    .section-title { margin-bottom: 60px; h2 { color: $blanco; } p { color: rgba(255,255,255,.6); } }
+
+    .steps {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: relative;
+        width: 100%;
+        padding: 2rem 0;
+        margin-top: 60px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 5%;
+            width: 90%;
+            height: 1px;
+            background: rgba(16, 185, 129, 0.2);
+            z-index: 0;
+        }
+
+        .process-step-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 1rem;
+
+            .step-icon-box {
+                position: relative;
+                width: 76px;
+                height: 76px;
+                background-color: #111827;
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1.5rem;
+                z-index: 2;
+
+                .step-number-badge {
+                    position: absolute;
+                    top: -8px;
+                    right: -8px;
+                    background-color: #10B981;
+                    color: #000000;
+                    font-weight: 800;
+                    font-size: 0.75rem;
+                    width: 22px;
+                    height: 22px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                img, svg {
+                    width: 28px;
+                    height: 28px;
+                    filter: drop-shadow(0 0 6px rgba(16,185,129,0.4));
+                }
+            }
+
+            .step-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #FFFFFF;
+                margin-bottom: 0.5rem;
+            }
+
+            .step-description {
+                font-size: 0.92rem;
+                line-height: 1.5;
+                color: #94A3B8;
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+.pricing {
+    background: $blanco;
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+        align-items: stretch;
+    }
+
+    .pricing-card {
+        display: flex;
+        flex-direction: column;
+        background: $blanco;
+        border: 1px solid $gris-claro;
+        border-radius: $radio-grande;
+        padding: 40px 30px;
+        position: relative;
+        transition: $transicion;
+
+        .btn-primary, .btn-outline { margin-top: auto; }
+
+        
+        
+        &.popular {
+            background: $azul-secundario;
+            border-color: $verde;
+            box-shadow: 0 8px 40px rgba($verde,.18), 0 0 0 1px rgba($verde,.2), 0 0 60px rgba($verde,.08);
+            transform: scale(1.04);
+
+            h3, .pricing-price, .pricing-period { color: $blanco; }
+            .pricing-desc { color: $gris-medio; border-bottom-color: rgba(255,255,255,.08); }
+            ul li { color: $gris-claro; border-bottom-color: rgba(255,255,255,.06); }
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px 18px;
+            border-radius: 999px;
+            background: $verde;
+            color: $blanco;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        h3 { font-size: 1.3rem; margin-bottom: 10px; color: $azul-oscuro; }
+        .pricing-price { font-size: 2.8rem; font-weight: 800; color: $azul-oscuro; line-height: 1; }
+        .pricing-period { color: $gris-medio; font-size: .9rem; margin-bottom: 10px; }
+        .pricing-desc { color: $gris-oscuro; font-size: .9rem; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid $gris-claro; }
+
+        ul { margin-bottom: 30px; li { padding: 10px 0; color: $texto; font-size: .95rem; border-bottom: 1px solid $gris-claro; &:last-child { border-bottom: none; } } }
+
+        .check-list {
+            list-style: none;
+            li {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 0;
+                font-size: .95rem;
+                color: $gris-oscuro;
+                border-bottom: 1px solid $gris-claro;
+                &:last-child { border-bottom: none; }
+            }
+            li::before {
+                content: "✓";
+                width: 24px;
+                height: 24px;
+                min-width: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: .85rem;
+                font-weight: 700;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+            &.check-green li::before { background: rgba($icono-verde,.12); color: $icono-verde; }
+        }
+
+        .btn-primary, .btn-outline { width: 100%; }
+
+        .btn-outline { color: $azul-oscuro; border-color: $gris-claro;  &:hover { border-color: $verde; color: $verde; } }
+
+        
+        &:hover { transform: translateY(-6px); box-shadow: $sombra-medio; &.popular { transform: scale(1.04) translateY(-6px); } }
+    }
+}
+
+.services-page { min-height: 100vh; }
+
+
+.services-hero {
+    @media (max-width: 768px) { padding: 130px 0 60px; }
+}
+
+.modules {
+    .module-block {
+        @media (max-width: 992px) { grid-template-columns: 1fr; gap: 40px; &.reverse { direction: ltr; } }
+    }
+
+    .module-image img {
+        @media (max-width: 992px) { height: 320px; }
+        @media (max-width: 768px) { height: 240px; }
+    }
+}
+
+.extras {
+    .extras-grid {
+        @media (max-width: 992px) { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 768px) { grid-template-columns: 1fr; }
+    }
+
+    .extra-card {
+        @media (max-width: 576px) { padding: 22px; }
+    }
+}
+
+.process {
+    .steps {
+        @media (max-width: 992px) {
+            flex-direction: column;
+            gap: 2rem;
+
+            &::before { display: none; }
+
+            .process-step-column {
+                flex-direction: row;
+                gap: 1rem;
+                text-align: left;
+                align-items: flex-start;
+
+                .step-icon-box {
+                    margin-bottom: 0;
+                    flex-shrink: 0;
+                }
+
+                .step-title { margin-bottom: 0.25rem; }
+            }
+        }
+    }
+}
+
+.pricing {
+    .pricing-grid {
+        @media (max-width: 992px) { grid-template-columns: 1fr; max-width: 450px; margin: 50px auto 0; }
+        @media (max-width: 576px) { max-width: 100%; margin: 30px auto 0; }
+    }
+
+    .pricing-card {
+        @media (max-width: 992px) { &.popular { transform: none; } }
+        @media (max-width: 576px) { padding: 30px 20px; }
+    }
+}
+
+// Override global de iconos en paginas de servicios: fuerza verde #00E676 en wrappers de iconos
+.services-page {
+
+  .service-card, .module-icon, .extra-icon, .step-icon {
+
+    .icon-container-circle {
+      background-color: rgba(0, 230, 118, 0.12) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 50% !important;
+      transition: all 0.3s ease;
+
+      svg, path, circle, rect, polyline, i {
+        stroke: #00E676 !important;
+
+        &[fill]:not([fill="none"]) {
+          fill: #00E676 !important;
+        }
+      }
+    }
+  }
+
+  .module-text h3, .extra-card h3, h3 {
+    color: #0F172A !important;
+  }
+  .module-text p, .extra-card p, p {
+    color: #64748B !important;
+  }
+}
+
+// Override ultra-especifico para icono Dashboard (modulo 2): fuerza azul #38BDF8
+.services-page {
+  .module-block:nth-of-type(3) .module-text .module-icon {
+    background-color: rgba(56, 189, 248, 0.12) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.08) !important;
+
+    img, svg, .icon {
+      stroke: #38BDF8 !important;
+      color: #38BDF8 !important;
+      fill: #38BDF8 !important;
+    }
+  }
+}

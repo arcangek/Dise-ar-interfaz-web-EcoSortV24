@@ -1,0 +1,570 @@
+// LOGIN — Estilos exclusivos de login.html
+// ============================================================
+// Pagina de inicio de sesion con layout split (50/50):
+//   .auth-split — flex container lado a lado
+//   .auth-panel — lado izquierdo: imagen + informacion
+//   .auth-form-col — lado derecho: formulario oscuro
+//
+// FORMULARIO:
+//   - Inputs con iconos SVG a la izquierda
+//   - Password wrapper con boton toggle (eye)
+//   - Checkbox personalizado con appearance: none
+//   - Botones SSO (Google/Microsoft) con iconos
+//
+// TECNICAS:
+//   - &:focus-within en .password-input-wrapper para efecto conjunto
+//   - .custom-checkbox con :checked para estilo visual
+//   - Auth divider con pseudo-elemento ::before para linea horizontal
+//   - !important usado en overrides de color de iconos (linea 481+)
+//
+// ARCHIVOS RELACIONADOS:
+//   - js/login.js: toggle password, validacion
+//   - _register.scss: mismo layout split para registro
+//   - _variables.scss: $verde-alterno, $azul-oscuro
+// ============================================================
+
+.auth-page {
+    margin: 0;
+    min-height: 100vh;
+    font-family: $fuente;
+
+    
+    header,
+    .main-navbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 80px;
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 4rem;
+        z-index: 1000 !important;
+        background-color: #0B132B !important;
+
+        .container {
+            width: 100%;
+            max-width: none;
+            padding: 0;
+        }
+    }
+}
+
+
+@keyframes authBgFadeIn {
+    to { opacity: .4; }
+}
+
+.auth-split {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
+    animation: authFadeIn .6s ease;
+    background: #0B0F17;
+    position: relative;
+
+    .auth-panel {
+        width: 50%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 4rem 3.5rem 2rem 3.5rem;
+        box-sizing: border-box;
+        overflow: hidden;
+        background-color: #06100d;
+
+        .side-illustration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            animation: fadeInSmooth 0.4s ease-in-out;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            background: linear-gradient(to bottom, rgba(11, 15, 26, 0.94) 0%, rgba(10, 31, 22, 0.88) 100%);
+        }
+    }
+
+    .auth-panel-content {
+        position: relative;
+        z-index: 2;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: rgba($verde-alterno,.15);
+            border: 1px solid $verde-alterno;
+            color: $verde-alterno;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .3px;
+            margin-bottom: 25px;
+
+            svg.auth-badge-leaf-icon {
+                color: #10B981;
+                fill: rgba(16, 185, 129, 0.15);
+                width: 15px;
+                height: 15px;
+                margin-right: 8px;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+
+        h2 {
+            color: #FFFFFF;
+            font-size: 2.3rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        > p {
+            color: #94A3B8;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+    }
+
+    .auth-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: rgba(255,255,255,.8);
+            font-size: .95rem;
+            margin-bottom: 16px;
+
+            &:last-child { margin-bottom: 0; }
+        }
+    }
+
+    .auth-check-icon { flex-shrink: 0; }
+
+    .auth-copyright {
+        position: absolute;
+        bottom: 2rem;
+        left: 3.5rem;
+        z-index: 3;
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.4);
+        margin: 0;
+    }
+
+    
+    .auth-form-col,
+    .right-login-column {
+        width: 50%;
+        min-height: 100vh;
+        padding: 5rem 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+        background: #0B0F17;
+    }
+
+    
+    .login-view-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 100vh;
+        height: 100%;
+        padding-bottom: 4rem;
+        padding-top: 100px !important;
+    }
+
+    .login-form-box {
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+
+        h1 { color: $blanco; font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+
+        form { display: flex; flex-direction: column; gap: 1.8rem !important; }
+    }
+
+    .login-input-group { margin-bottom: .5rem; }
+
+    .auth-subtitle { color: rgba(255,255,255,.5); font-size: .95rem; margin-bottom: 35px; }
+
+    .auth-field {
+        margin-bottom: 22px;
+
+        .auth-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+
+            label { color: $blanco; font-weight: 600; font-size: .85rem; }
+        }
+
+        label { display: block; color: rgba(255,255,255,.8); font-weight: 600; font-size: .85rem; margin-bottom: .35rem; }
+    }
+
+    .forgot-link {
+        color: $verde;
+        font-size: .82rem;
+        font-weight: 500;
+        transition: $transicion;
+
+        
+        &:hover { color: lighten($verde, 10%); }
+    }
+
+    
+    .input-icon-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            width: 18px;
+            height: 18px;
+            color: $color-placeholder;
+            pointer-events: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px 12px 44px;
+            border: 1px solid rgba(255,255,255,.12);
+            height: 40px;
+            border-radius: $radio-medio;
+            background: #1C2541;
+            color: $blanco;
+            font-size: .85rem;
+            font-family: inherit;
+            transition: $transicion;
+            box-sizing: border-box;
+
+            &::placeholder { color: rgba(255,255,255,.25); }
+
+            
+            &:focus {
+                outline: none;
+                border-color: $verde;
+                background: lighten(#1C2541, 4%);
+                box-shadow: 0 0 0 3px rgba($verde,.1);
+            }
+        }
+    }
+
+    
+    .password-input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background: #1C2541;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: $radio-medio;
+        padding: 0 14px 0 44px;
+        height: 40px;
+        box-sizing: border-box;
+        transition: border-color .2s ease, box-shadow .2s ease;
+
+        
+        &:focus-within {
+            border-color: $verde !important;
+            box-shadow: 0 0 0 3px rgba($verde,.1);
+            background: lighten(#1C2541, 4%);
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            color: $blanco;
+            padding: 0;
+            padding-right: 2.5rem;
+            font-size: .85rem;
+            font-family: inherit;
+            box-sizing: border-box;
+
+            &::placeholder { color: rgba(255,255,255,.25) !important; }
+        }
+    }
+
+    .eye-toggle-btn {
+        position: absolute;
+        right: 1.25rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        z-index: 5;
+    }
+
+    
+    .input-icon-left {
+        position: absolute;
+        left: 14px;
+        width: 18px;
+        height: 18px;
+        color: $color-placeholder !important;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .password-toggle-eye {
+        width: 18px;
+        height: 18px;
+        color: $gris-medio !important;
+        transition: color 0.2s ease;
+        cursor: pointer;
+    }
+
+    .eye-toggle-btn:hover .password-toggle-eye {
+        color: $verde-alterno !important;
+    }
+
+    .auth-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255,255,255,.55);
+        font-size: .88rem;
+        cursor: pointer;
+        margin-bottom: 28px;
+
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 1px solid rgba(255,255,255,.25);
+            background: transparent !important;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            transition: $transicion;
+            margin: 0;
+
+            
+            &:checked { background: $verde-alterno !important; border-color: $verde-alterno !important; }
+        }
+    }
+
+    .auth-submit {
+        width: 100%;
+        padding: 0 30px;
+        border-radius: 999px;
+        background: #05A848;
+        color: $blanco;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: $transicion;
+        border: none;
+
+        
+        &:hover {
+            background: #15A74C;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(5, 168, 72, .35);
+        }
+    }
+
+    .login-submit-btn { height: 44px !important; font-size: .95rem !important; }
+
+    
+    .auth-divider {
+        position: relative;
+        margin: 28px 0;
+        text-align: center;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: rgba(255,255,255,.1);
+        }
+
+        span {
+            position: relative;
+            z-index: 1;
+            background: #0B0F17;
+            color: #475569;
+            padding: 0 1rem;
+            color: rgba(255,255,255,.35);
+            font-size: .85rem;
+        }
+    }
+
+    .auth-sso { display: flex; gap: 12px; margin-bottom: 28px; .sso-btn { flex: 1; } }
+
+    .sso-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 10px;
+        border-radius: $radio-medio;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: $blanco;
+        font-size: .9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: $transicion;
+
+        svg { flex-shrink: 0; fill: $blanco; stroke: $blanco; }
+        img { opacity: .85; }
+
+        
+        &:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); }
+    }
+
+    
+    .google-auth-btn .icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .auth-footer-text {
+        text-align: center;
+        color: rgba(255,255,255,.45);
+        font-size: .9rem;
+        margin-top: 28px;
+
+        a { color: $verde-alterno; font-weight: 600; transition: $transicion;  &:hover { color: lighten($verde-alterno, 10%); } }
+    }
+}
+
+
+.auth-split {
+    @media (max-width: 968px) {
+        flex-direction: column;
+
+        .auth-panel {
+            width: 100%;
+            height: 40vh;
+            position: relative;
+        }
+
+        .auth-form-col,
+        .right-login-column {
+            width: 100%;
+            flex: none;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+
+        .auth-copyright {
+            position: relative;
+            bottom: auto;
+            right: auto;
+            text-align: center;
+            margin-top: 3rem;
+        }
+    }
+}
+
+// Sincronizacion de color de iconos en formularios auth: fuerza slate #94A3B8 en lock/eye/google
+.auth-form, .login-container, .form-group-context, .auth-form-col {
+
+  .input-field-wrapper, .input-group, .input-icon-wrapper, .password-input-wrapper {
+    position: relative;
+
+    .icon-candado, .icon-lock, .lock-badge, .input-icon-left,
+    .toggle-password, .icon-ojo, .eye-icon, .password-toggle-eye,
+    svg.fa-lock, svg.fa-eye, svg.fa-eye-slash {
+      color: #94A3B8 !important;
+      stroke: #94A3B8 !important;
+
+      path, circle, rect {
+        fill: #94A3B8 !important;
+
+        &[fill="#000000"], &[fill="black"] {
+          fill: #94A3B8 !important;
+        }
+        &[stroke="#000000"], &[stroke="black"] {
+          stroke: #94A3B8 !important;
+        }
+      }
+    }
+
+    i.fa-lock, i.fa-eye, i.fa-eye-slash, i.bx-lock, i.bx-show, i.bx-hide {
+      color: #94A3B8 !important;
+    }
+  }
+
+  .input-icon-wrapper .input-icon,
+  .icon-user, .icon-name, .icon-avatar,
+  .icon-organization, .icon-building, .icon-company {
+    color: #94A3B8 !important;
+    stroke: #94A3B8 !important;
+
+    path, circle, rect, polygon {
+      stroke: #94A3B8 !important;
+
+      &[fill]:not([fill="none"]) {
+        fill: #94A3B8 !important;
+      }
+      &[fill="#000000"], &[fill="black"] {
+        fill: #94A3B8 !important;
+      }
+      &[stroke="#000000"], &[stroke="black"] {
+        stroke: #94A3B8 !important;
+      }
+    }
+  }
+
+  .btn-google, .google-login-btn, .social-btn-google, .sso-btn img[src*="google"] {
+
+    svg, path, circle, i {
+      color: #94A3B8 !important;
+      stroke: #94A3B8 !important;
+
+      &[fill]:not([fill="none"]), fill {
+        fill: #94A3B8 !important;
+      }
+    }
+  }
+}
+
+// Animacion fadeInSmooth para imagen del panel auth
+@keyframes fadeInSmooth {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

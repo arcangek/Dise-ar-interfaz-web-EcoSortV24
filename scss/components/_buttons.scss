@@ -1,0 +1,64 @@
+// BOTONES — .btn-primary y .btn-outline
+// ============================================================
+// Solo 2 tipos de botones en todo el sitio:
+//   .btn-primary: fondo verde con sombra neon
+//   .btn-outline: borde blanco semitransparente (sin fondo)
+//
+// Ambos comparten las mismas propiedades base via selector
+// agrupado (",") para evitar duplicar codigo.
+//
+// TECNICA: border-radius: 999px para forma de pildora.
+// transition: $transicion para hover suave.
+//
+// En movil (<768px) ambos botones se vuelven width:100%
+// para ocupar todo el ancho disponible.
+//
+// ARCHIVOS RELACIONADOS:
+//   - _variables.scss: $transicion, $blanco
+//   - _global.scss: .badge, .btn-link
+// ============================================================
+
+.btn-primary,
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 30px;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: $transicion;
+    font-size: .95rem;
+}
+
+.btn-primary {
+    background: #05A848;
+    color: $blanco;
+    box-shadow: 0 4px 20px rgba(#05A848, .35);
+
+    
+    // HOVER
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(#05A848, .4), 0 0 40px rgba(#05A848, .2);
+        filter: drop-shadow(0 0 8px rgba(#05A848, 0.45));
+    }
+}
+
+.btn-outline {
+    border: 2px solid rgba($blanco, .3);
+    color: $blanco;
+
+    
+    &:hover {
+        background: rgba($blanco, .08);
+        border-color: $verde;
+        color: $verde;
+    }
+}
+
+@media (max-width: 768px) {
+    .btn-primary,
+    .btn-outline {
+        width: 100%;
+    }
+}

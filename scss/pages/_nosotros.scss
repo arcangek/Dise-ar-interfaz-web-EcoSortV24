@@ -1,0 +1,497 @@
+// NOSOTROS — Estilos exclusivos de nosotros.html
+// ============================================================
+// Pagina corporativa con 4 secciones:
+//   .about-hero — hero con imagen de fondo y overlay oscuro
+//   .history — grid 2 cols: texto + imagen con stats overlay
+//   .purpose — grid 2 cols: mision, vision, valores, compromiso
+//   .goals — seccion oscura: lista de objetivos + metricas 2x2
+//   .team-section — grid 3 cols: 6 tarjetas de miembros del equipo
+//
+// TECNICAS DESTACADAS:
+//   - Image overlay con .stats-overlay-row (blur + transparencia)
+//   - Iconos Font Awesome (fas fa-bullseye, fa-eye, etc.)
+//   - Sistema de 4 colores para proposito: verde/azul/morado/naranja
+//   - Contenedor de imagen con posicion relativa y badge MIT
+//   - Filtros SVG para iconos (leaf conserva color, otros van blanco)
+//
+// ARCHIVOS RELACIONADOS:
+//   - js/main.js: contadores animados (count-metric)
+//   - _mixins.scss: card-shadow
+// ============================================================
+
+// HERO
+.about-hero {
+    position: relative;
+    height: 85vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    .about-hero-bg {
+        position: absolute;
+        inset: 0;
+    }
+
+    // Capa semitransparente oscura para legibilidad del texto
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba($azul-oscuro, .65);
+        z-index: 1;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .about-hero-content {
+        max-width: 750px;
+
+        .badge { margin-bottom: 20px; }
+
+        h1 {
+            color: $blanco;
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: 800;
+            margin: 20px 0;
+            line-height: 1.1;
+        }
+
+        p {
+            color: rgba(255,255,255,.8);
+            font-size: 1.1rem;
+            max-width: 650px;
+            line-height: 1.7;
+        }
+    }
+}
+
+
+// 2. HISTORIA — Grid de dos columnas: texto + imagen con estadisticas
+.history {
+    background: $blanco;
+
+    .badge { margin-bottom: 15px; }
+
+    .history-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+    }
+
+    .history-text {
+        h2 {
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            color: $azul-oscuro;
+        }
+
+        p {
+            color: $gris-oscuro;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+    }
+}
+
+
+// 3. PROPOSITO — Mision, Vision, Valores y Compromiso Ambiental
+.purpose {
+    background: $blanco;
+
+    .section-title { margin-bottom: 50px; }
+
+    .purpose-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .purpose-card {
+        background: $gris;
+        border: 1px solid $gris-claro;
+        border-radius: $radio-grande;
+        padding: 45px 35px;
+        transition: $transicion;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: $sombra-medio;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: $azul-oscuro;
+        }
+
+        p {
+            color: $gris-oscuro;
+            line-height: 1.7;
+        }
+    }
+
+    // Circulo icono con color segun tipo (verde/azul/purpura/naranja)
+    .purpose-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+
+        i { font-size: 28px; }
+
+        &.icon-green { background: rgba($verde-alterno,.12); color: $verde-alterno; }
+        &.icon-blue { background: rgba(56,189,248,.12); color: #38BDF8; }
+        &.icon-purple { background: rgba(168,85,247,.12); color: #A855F7; }
+        &.icon-orange { background: rgba(245,158,11,.12); color: #F59E0B; }
+    }
+
+    // Badge de texto con color de fondo semitransparente
+    .purpose-label {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: .75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+
+        &.label-green { background: rgba($verde-alterno,.12); color: $verde-alterno; }
+        &.label-blue { background: rgba(33,150,243,.12); color: #2196F3; }
+        &.label-purple { background: rgba(168,85,247,.12); color: #A855F7; }
+        &.label-orange { background: rgba(245,158,11,.12); color: #F59E0B; }
+    }
+}
+
+// 4. METAS — Seccion oscura con lista de objetivos y metricas en grid 2x2
+.goals {
+    background: $azul-oscuro;
+    color: $blanco;
+
+    .goals-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+    }
+
+    .goals-list {
+        .badge { margin-bottom: 20px; }
+
+        h2 {
+            color: $blanco;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            color: rgba(255,255,255,.85);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            margin-top: 2px;
+        }
+    }
+
+    // Tarjetas metricas en grid 2x2 con icono circular
+    .goals-metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .goal-metric {
+        background: $azul-claro;
+        border: 1px solid $borde-oscuro;
+        border-radius: $radio-grande;
+        padding: 30px 20px;
+        text-align: center;
+        transition: $transicion;
+
+        &:hover {
+            transform: translateY(-4px);
+            background: lighten($azul-claro, 3%);
+        }
+
+        .goal-metric-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+
+            i { font-size: 22px; }
+
+            // Sistema de 4 colores: verde/cian/purpura/ambar
+            &.icon-green { background: rgba($verde-alterno,.1); i { color: $verde-alterno; } }
+            &.icon-blue { background: rgba(56,189,248,.12); i { color: #38BDF8; } }
+            &.icon-purple { background: rgba(168,85,247,.12); i { color: #A855F7; } }
+            &.icon-yellow { background: rgba(245,158,11,.15); i { color: #F59E0B; } }
+        }
+
+        h3 {
+            color: $blanco;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        p {
+            color: rgba(255,255,255,.6);
+            font-size: .9rem;
+        }
+    }
+}
+
+// 5. EQUIPO — Grid de 3 columnas con fotos de perfil y descripcion
+.team-section {
+    background: $blanco;
+
+    .section-title p { max-width: 600px; }
+}
+
+// =====================================
+// RESPONSIVE — Ajustes por punto de quiebre
+// =====================================
+
+.about-hero {
+    @media (max-width: 768px) {
+        height: auto;
+        min-height: 400px;
+        padding: 100px 0 60px;
+    }
+}
+
+.about-hero-content {
+    h1 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+}
+
+.history {
+    .history-grid {
+        @media (max-width: 992px) { grid-template-columns: 1fr; }
+    }
+}
+
+.purpose {
+    .purpose-grid {
+        @media (max-width: 992px) { grid-template-columns: 1fr; }
+    }
+
+    .purpose-card {
+        @media (max-width: 576px) { padding: 30px 20px; }
+    }
+}
+
+.goals {
+    .goals-grid {
+        @media (max-width: 992px) { grid-template-columns: 1fr; }
+    }
+
+    .goals-metrics {
+        @media (max-width: 768px) { grid-template-columns: 1fr; }
+        @media (max-width: 576px) { gap: 14px; }
+    }
+}
+
+.team-section {
+    .team-section-container {
+        @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr) !important; }
+        @media (max-width: 640px) { grid-template-columns: 1fr !important; }
+    }
+}
+
+// =====================================
+// OVERRIDES ICONOS — solo leaf.svg conserva su color verde original
+// =====================================
+// WRAPPER IMAGEN HISTORIA — contenedor con overlay de badge y stats
+// TEAM GRID — Contenedor del equipo con 3 columnas
+// =====================================
+#nosotros {
+    // Leaf.svg en badges conserva su color verde nativo
+    .badge img[src*="leaf.svg"] {
+        filter: none !important;
+        color: initial !important;
+        fill: initial !important;
+    }
+
+    // Demas SVGs en badges se vuelven blancos
+    .badge img[src*=".svg"]:not([src*="leaf.svg"]),
+    .mit-badge-container img[src*=".svg"],
+    img.custom-icon {
+        filter: brightness(0) invert(1) !important;
+        opacity: 1 !important;
+    }
+
+    .nosotros-image-card-wrapper {
+        position: relative !important;
+        width: 100%;
+        max-width: 600px;
+        height: 480px;
+        border-radius: 16px;
+        overflow: hidden;
+
+        .main-hero-img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block;
+        }
+
+        // MIT Badge — esquina superior derecha
+        .mit-badge-container {
+            position: absolute !important;
+            top: 16px !important;
+            right: 16px !important;
+            width: auto !important;
+            height: auto !important;
+            max-width: 120px !important;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 8px;
+            background: #05A848;
+            color: $blanco;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .3px;
+
+            img { width: 14px; height: 14px; flex-shrink: 0; }
+        }
+
+        // Stats overlay — barra inferior con 3 indicadores
+        .stats-overlay-row {
+            position: absolute !important;
+            bottom: 16px !important;
+            left: 16px !important;
+            right: 16px !important;
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            gap: 16px !important;
+            z-index: 10;
+            width: 100%;
+            padding: 0 16px;
+
+            .stat-pill-item {
+                flex: 1 !important;
+                background: rgba(30,30,35,0.65) !important;
+                backdrop-filter: blur(12px) !important;
+                border: 1px solid rgba(255,255,255,0.2) !important;
+                border-radius: 20px !important;
+                padding: 14px 10px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+
+                .stat-number {
+                    color: #FFFFFF !important;
+                    font-size: 1.35rem !important;
+                    font-weight: 700 !important;
+                    line-height: 1.2 !important;
+                    margin-bottom: 4px !important;
+                }
+
+                .stat-label {
+                    color: rgba(255,255,255,0.75) !important;
+                    font-size: 0.85rem !important;
+                    font-weight: 400 !important;
+                    letter-spacing: 0.3px;
+                }
+            }
+        }
+    }
+    .team-section-container {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 24px !important;
+        padding: 40px 0;
+
+        .team-card {
+            background: #F8FAFC !important;
+            border: 1px solid #E2E8F0 !important;
+            border-radius: 16px !important;
+            padding: 24px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+
+            > p {
+                color: $gris-oscuro;
+                font-size: .95rem;
+                line-height: 1.6;
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 1px solid $gris-claro;
+            }
+
+            // Header horizontal: avatar + nombre, rol y departamento
+            .card-top-header {
+                display: flex !important;
+                align-items: center !important;
+                gap: 16px !important;
+                margin-bottom: 14px !important;
+
+                img.profile-avatar {
+                    width: 64px !important;
+                    height: 64px !important;
+                    border-radius: 12px !important;
+                    object-fit: cover !important;
+                }
+
+                h3 {
+                    font-size: 1.1rem;
+                    margin-bottom: 4px;
+                    color: $azul-oscuro;
+                }
+
+                .team-role {
+                    display: block;
+                    color: $verde;
+                    font-weight: 600;
+                    font-size: .9rem;
+                    margin-bottom: 6px;
+                }
+
+                .team-dept {
+                    display: inline-block;
+                    padding: 3px 10px;
+                    border-radius: 999px;
+                    background: $gris;
+                    color: $gris-oscuro;
+                    font-size: .7rem;
+                    font-weight: 600;
+                    letter-spacing: .5px;
+                }
+            }
+        }
+    }
+}

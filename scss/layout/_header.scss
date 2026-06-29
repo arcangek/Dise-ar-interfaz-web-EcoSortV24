@@ -1,0 +1,262 @@
+// HEADER — Barra de navegacion principal (fija, 7 paginas)
+// ============================================================
+// El header es identico en todas las paginas. Se comparte via
+// @import desde _header.scss.
+//
+// CARACTERISTICAS CLAVE:
+//   - position: fixed — siempre visible arriba
+//   - background: transparent → rgba al scrollear (clase .scrolled)
+//   - z-index: 1000 — encima del hero pero debajo de modales (1200)
+//   - backdrop-filter: blur(16px) — efecto de vidrio al scrollear
+//   - .menu-toggle (☰) solo visible en <992px (mobile menu)
+//
+// ESTADOS:
+//   header normal: fondo transparente (hero se ve detras)
+//   header.scrolled: fondo oscuro semi-opaco + blur + sombra
+//   nav.show-menu: menu desplegado en movil (display: flex)
+//
+// ARCHIVOS RELACIONADOS:
+//   - js/main.js: agrega clase "scrolled" al hacer scroll
+//   - js/auth-header.js: funcionalidad extra (dropdown perfil)
+//   - _variables.scss: $z-header, $altura-header
+// ============================================================
+
+
+
+
+
+
+.navbar-brand-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    height: 32px;
+}
+
+.brand-logo-img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba($icono-verde, 0.45));
+}
+
+.brand-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+}
+
+.brand-text .text-white {
+    color: $blanco !important;
+}
+
+.brand-text .text-green {
+    color: $verde-alterno !important;
+}
+
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $altura-header;
+    background: transparent;
+    z-index: $z-header;
+    transition: $transicion;
+
+    
+    
+    &.scrolled {
+        background: rgba($azul-oscuro, .96);
+        backdrop-filter: blur(16px);
+        box-shadow: $sombra-medio;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    
+    .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    
+    nav ul {
+        display: flex;
+        align-items: center;
+        gap: 35px;
+
+        li a {
+            color: rgba(255,255,255,.75);
+            font-weight: 500;
+            font-size: .95rem;
+            transition: $transicion;
+            position: relative;
+
+            
+            &:hover {
+                color: $verde;
+            }
+
+            
+            &.active {
+                color: $icono-verde;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: -6px;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background: $icono-verde;
+                    border-radius: 2px;
+                }
+            }
+        }
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .user-profile-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .btn-avatar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 4px;
+        border-radius: 8px;
+        transition: background .2s ease;
+
+        &:hover { background: rgba(255,255,255,.08); }
+    }
+
+    .nav-username {
+        color: $blanco;
+        font-weight: 500;
+        font-size: .9rem;
+    }
+
+    .dropdown-menu-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background: $borde-oscuro;
+        border: 1px solid rgba(255,255,255,.1);
+        min-width: 200px;
+        border-radius: $radio-medio;
+        z-index: $z-menu;
+        margin-top: 10px;
+        padding: 5px 0;
+    }
+
+    .dropdown-header-info {
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        font-size: .85rem;
+        color: $gris-medio;
+        line-height: 1.5;
+
+        strong {
+            color: $blanco;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    .dropdown-item-logout {
+        width: 100%;
+        text-align: left;
+        background: transparent;
+        border: none;
+        color: $rojo-error;
+        padding: 10px 15px;
+        font-size: .9rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: inherit;
+
+        &:hover { background: rgba(255,255,255,.05); }
+    }
+
+    
+    .btn-link {
+        color: rgba(255,255,255,.8);
+        font-weight: 500;
+        font-size: .95rem;
+        transition: $transicion;
+        padding: 8px 20px;
+        border: 1.5px solid rgba(255,255,255,.35);
+        border-radius: 999px;
+
+        
+        &:hover {
+            color: $verde;
+            border-color: $verde;
+        }
+    }
+
+    
+    .menu-toggle {
+        display: none;
+        font-size: 1.8rem;
+        color: $blanco;
+        background: transparent;
+    }
+
+    
+    @media (max-width: 992px) {
+        nav {
+            display: none;
+            position: absolute;
+            top: $altura-header;
+            left: 0;
+            width: 100%;
+            background: rgba($azul-oscuro, .98);
+            padding: 20px;
+            z-index: $z-menu;
+
+            
+            &.show-menu { display: flex; }
+
+            ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        .actions { display: none; }
+        .menu-toggle { display: block; }
+    }
+
+    
+    @media (max-width: 576px) {
+        .container {
+            padding: 0 1rem;
+        }
+
+        .menu-toggle {
+            font-size: 1.5rem;
+        }
+    }
+}

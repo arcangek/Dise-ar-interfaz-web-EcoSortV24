@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<!-- ================================================================
+     PAGINA: simulador.html — Simulador de clasificacion con IA
+     ================================================================
+     Esta pagina contiene el simulador mas complejo del sitio. Todo
+     el contenido se genera DINAMICAMENTE via JavaScript (el HTML
+     solo tiene el <div id="root"> vacio y el footer).
+
+     El simulador usa una MAQUINA DE ESTADOS con 3 fases:
+       1. CONFIGURACION: formulario con seleccion de residuos,
+          toxicidad, volumen y sector.
+       2. CARGA: animacion de contador 0-100% + 4 pasos secuenciales.
+       3. RESULTADO: protocolo generado por Gemini API + grafico donut.
+
+     ARCHIVOS RELACIONADOS:
+       - js/simulador.js: toda la logica del simulador (maquina de
+         estados, renderizado, API Gemini)
+       - js/gemini-config.js: configuracion de la API key
+       - js/main.js: funciones globales
+       - scss/pages/_simulador.scss: todos los estilos del simulador
+     ================================================================ -->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Simulador de clasificación inteligente EcoSort. Ingresa tipo de residuo, toxicidad y volumen para que la IA genere un protocolo de disposición automatizado."
+    />
+    <title>Simulador | EcoSort</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="icon" href="../assets/images/logo.png" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="../index.html" class="navbar-brand-link">
+<img
+                  src="../assets/images/logo.png"
+                  alt="EcoSort Logo"
+                  class="brand-logo-img"
+                  loading="lazy"
+                />
+          <span class="brand-text"
+            ><span class="text-white">Eco</span
+            ><span class="text-green">Sort</span></span
+          >
+        </a>
+
+        <nav>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="simulador.html" class="active">Simulador</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="actions">
+          <a href="login.html" class="btn-link">Iniciar sesión</a>
+          <a href="registro.html" class="btn-primary">Registrarse</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menú de navegación">☰</button>
+      </div>
+    </header>
+
+    <!-- Video de fondo + simulador generado por JavaScript -->
+    <div class="sim-video-wrap">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+        <source src="../assets/video/simuldor.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <main id="root"></main>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="navbar-brand-link">
+              <img
+                src="../assets/images/logo.png"
+                alt="EcoSort Logo"
+                class="brand-logo-img"
+              />
+              <span class="brand-text"
+                ><span class="text-white">Eco</span
+                ><span class="text-green">Sort</span></span
+              >
+            </a>
+            <p>
+              Plataforma inteligente para la gestión automatizada de residuos
+              industriales mediante Inteligencia Artificial.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Twitter/X">
+                <img src="../assets/icons/twitter.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <img
+                  src="../assets/icons/linkedin-in.svg"
+                  class="icon"
+                  alt=""
+                />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <img src="../assets/icons/instagram.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="GitHub">
+                <img src="../assets/icons/github.svg" class="icon" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>EMPRESA</h4>
+            <ul>
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="servicios.html">Servicios</a></li>
+              <li><a href="simulador.html">Simulador IA</a></li>
+              <li><a href="../index.html">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>SOPORTE</h4>
+            <ul>
+              <li><a href="contacto.html">Contacto</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="documentacion">Documentación</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="faq">FAQ</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="privacidad">Privacidad</a></li>
+            </ul>
+            <div class="footer-contact">
+              <p>
+                <img
+                  src="../assets/icons/icon-mail-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                info@ecosort.ai
+              </p>
+              <p>
+                <img
+                  src="../assets/icons/icon-phone-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                +51 985 938 535
+              </p>
+              <p>
+                <img
+                  src="../assets/icons/icon-location-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                Alfonso Ugarte 930, Cercado de Lima, Lima Centro, Perú
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="sub-footer">
+          <p>© 2026 EcoSort. Todos los derechos reservados.</p>
+          <p>
+            Hecho con 💚 para un planeta más
+            verde
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===========================================================
+         SCRIPTS DEL SIMULADOR (orden critico!)
+         ===========================================================
+         El orden de carga es importante:
+           1. main.js — funciones globales (menu, scroll, animaciones)
+           2. gemini-config.js — define GEMINI_CONFIG con la API key
+              (DEBE cargarse antes que simulador.js)
+           3. simulador.js — maquina de estados del simulador. Al
+              cargarse, ejecuta mostrarSimulador() inmediatamente
+              (autonomous execution).
+           4. modales.js (defer) — modales del footer
+           5. auth-header.js (defer) — header
+
+         Si gemini-config.js se carga DESPUES de simulador.js,
+         la API key no estara definida y mostrara error.
+         =========================================================== -->
+    <script src="../js/main.js"></script>
+    <script src="../js/gemini-config.js"></script>
+    <script src="../js/simulador.js"></script>
+    <script src="../js/modales.js"></script>
+    <script src="../js/auth-header.js" defer></script>
+  </body>
+</html>

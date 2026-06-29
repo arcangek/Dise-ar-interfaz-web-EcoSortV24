@@ -1,0 +1,67 @@
+// FORMULARIOS — Estilos base para todos los formularios
+// ============================================================
+// Este partial define el aspecto de inputs, textareas y selects
+// en todo el sitio. Se usa en contacto.html (formulario de
+// contacto) y en los formularios auth (login/registro).
+//
+// PATRON: .form-group > label + input/textarea
+//   - Label arriba, input abajo (flex-direction: column)
+//   - :focus cambia borde a verde y agrega sombra sutil
+//   - .form-row divide en 2 columnas (1 en movil)
+//
+// ARCHIVOS RELACIONADOS:
+//   - _contacto.scss: extiende estos estilos con .input-icon-wrapper
+//   - _login.scss: estilos oscuros para formularios auth
+//   - _registro.scss: estilos de stepper y sector pills
+// ============================================================
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: $azul-oscuro;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 15px 18px;
+        border: 1px solid $gris-claro;
+        border-radius: $radio-medio;
+        background: $blanco;
+        color: $texto;
+        transition: $transicion;
+
+        
+        &:focus {
+            border-color: $verde;
+            box-shadow: 0 0 0 4px rgba($verde-hover, .15);
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 140px;
+    }
+}
+
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,363 @@
+// CONTACTO — Estilos exclusivos de contacto.html
+// ============================================================
+// Pagina de contacto con split layout:
+//   .contacto-hero — hero con video de fondo
+//   .contacto-main — grid 1.5fr + 1fr (formulario + sidebar)
+//
+// FORMULARIO: campos con iconos SVG a la izquierda
+//   (position: absolute + padding-left), topic pills con
+//   radio buttons ocultos y label estilizado
+//
+// SIDEBAR: 3 tarjetas verticales
+//   1) Info: email, telefono, direccion, horario
+//   2) Redes: Twitter, LinkedIn, Instagram, GitHub
+//   3) Mapa: Google Maps embebido en iframe
+//
+// TECNICAS:
+//   - input:checked + .pill para seleccion visual sin JS
+//   - light-pastel-box() mixin para iconos circulares
+//   - .map-tag-capsule con dark-neon-glow() mixin
+//   - Social buttons con hover que cambia a verde
+//
+// ARCHIVOS RELACIONADOS:
+//   - _mixins.scss: hero-video, hero-overlay, light-pastel-box
+//   - _forms.scss: estilos base de formularios
+// ============================================================
+
+
+.contacto-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 160px 0 100px;
+    background: $azul-oscuro; // fallback si el video no carga
+    background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 30px 30px;
+
+    .hero-video { @include hero-video; }
+    .hero-overlay { @include hero-overlay; }
+
+    .contacto-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 750px;
+
+        .badge { margin-bottom: 20px; }
+
+        h1 {
+            color: $blanco;
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: 800;
+            margin: 20px 0;
+            line-height: 1.1;
+        }
+
+        p {
+            color: rgba(255,255,255,.7);
+            font-size: 1.1rem;
+            max-width: 650px;
+            line-height: 1.7;
+        }
+    }
+}
+
+
+.contacto-main {
+    background: $blanco;
+
+    
+    .contacto-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 40px;
+        align-items: start;
+    }
+
+    
+    .contacto-form-card {
+        background: $blanco;
+        border: 1px solid $gris-claro;
+        border-radius: $radio-grande;
+        padding: 40px;
+        box-shadow: $sombra-pequena;
+
+        .contacto-form-header {
+            h2 { font-size: 1.5rem; margin-bottom: 8px; color: $azul-oscuro; }
+            p { color: $gris-medio; font-size: .95rem; }
+        }
+
+        .contacto-divider {
+            border: none;
+            border-top: 1px solid $gris-claro;
+            margin: 25px 0;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+
+            label {
+                display: block;
+                font-weight: 600;
+                font-size: .95rem;
+                color: $azul-oscuro;
+                margin-bottom: 8px;
+
+                .required { color: $rojo-error; }
+            }
+
+            
+            .input-icon-wrapper {
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                .input-icon {
+                    position: absolute;
+                    left: 14px;
+                    width: 18px;
+                    height: 18px;
+                    color: $color-placeholder;
+                    pointer-events: none;
+                }
+
+                input[type="text"],
+                input[type="email"] {
+                    padding-left: 44px;
+                }
+            }
+
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                width: 100%;
+                padding: 12px 16px;
+                border: 1px solid $gris-claro;
+                border-radius: $radio-medio;
+                font-size: .95rem;
+                font-family: inherit;
+                color: $texto;
+                background: $blanco;
+                transition: $transicion;
+                box-sizing: border-box;
+
+                &::placeholder { color: $gris-medio; }
+
+                
+                &:focus {
+                    outline: none;
+                    border-color: $verde;
+                    box-shadow: 0 0 0 3px rgba($verde,.1);
+                }
+            }
+
+            textarea {
+                min-height: 130px;
+                resize: vertical;
+            }
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+    }
+
+    
+    .topic-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .pill-option {
+        cursor: pointer;
+
+        input { display: none; }
+
+        .pill {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid $gris-claro;
+            border-radius: 999px;
+            font-size: .9rem;
+            font-weight: 500;
+            color: $texto;
+            transition: $transicion;
+            white-space: nowrap;
+        }
+
+        
+        input:checked + .pill {
+            border-color: $verde;
+            background: $verde;
+            color: $blanco;
+        }
+
+        
+        &:hover .pill { border-color: $verde; }
+    }
+
+    
+    .contacto-submit {
+        width: 100%;
+        padding: 14px 30px;
+        border-radius: 999px;
+        background: #05A848;
+        color: $blanco;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: $transicion;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: none;
+
+        
+        &:hover {
+            background: #15A74C;
+            transform: translateY(-2px);
+            box-shadow: $sombra-medio;
+        }
+    }
+
+    
+    .contacto-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        .contacto-side-card {
+            background: $blanco;
+            border: 1px solid $gris-claro;
+            border-radius: $radio-grande;
+            padding: 28px;
+
+            h3 { font-size: 1.1rem; margin-bottom: 20px; color: $azul-oscuro; }
+        }
+
+        
+        .contacto-info-item {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 18px;
+
+            &:last-child { margin-bottom: 0; }
+
+            .contacto-label { display: block; color: $gris-oscuro; font-size: .8rem; margin-bottom: 2px; }
+            strong { display: block; color: $azul-oscuro; font-size: .9rem; }
+        }
+
+        
+        .contacto-icon-circle {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            @include light-pastel-box($icono-verde);
+        }
+
+        
+        .unified-social-btn {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #1E293B;
+            border: none;
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease;
+
+            img { width: 20px; height: 20px; display: block; }
+
+            &:hover {
+                background-color: #10B981;
+                transform: translateY(-2px);
+            }
+        }
+
+        .contacto-social-item.twitter .unified-social-btn img { filter: none; }
+        .contacto-social-item.linkedin .unified-social-btn img { filter: none; }
+        .contacto-social-item.instagram .unified-social-btn img { filter: none; }
+        .contacto-social-item.github .unified-social-btn img { filter: none; }
+
+        .contacto-social-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+
+            &:last-child { margin-bottom: 0; }
+
+            > div {
+                strong { display: block; color: $azul-oscuro; font-size: .9rem; font-weight: 600; }
+                .contacto-handle { color: $gris-oscuro; font-size: .8rem; }
+            }
+        }
+
+        
+        .contacto-map-card {
+            background: $azul-oscuro;
+            border-radius: $radio-grande;
+            padding: 28px;
+
+            .badge {
+                display: inline-block;
+                color: $verde;
+                font-size: .8rem;
+                font-weight: 700;
+                letter-spacing: .5px;
+                margin-bottom: 20px;
+            }
+
+            .map-tag-capsule {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center;
+                gap: .5rem;
+                @include dark-neon-glow($icono-verde);
+
+                svg { margin: 0 !important; padding: 0 !important; display: inline-block; }
+            }
+
+            .contacto-map-iframe {
+                border-radius: $radio-medio;
+                overflow: hidden;
+                line-height: 0;
+
+                iframe { display: block; border: none; }
+            }
+        }
+    }
+}
+
+.contacto-hero {
+    @media (max-width: 768px) { padding: 130px 0 60px; }
+}
+
+.contacto-hero-content {
+    h1 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+}
+
+.contacto-main {
+    .contacto-grid {
+        @media (max-width: 992px) { grid-template-columns: 1fr; }
+    }
+
+    .contacto-form-card {
+        @media (max-width: 768px) { padding: 25px; .form-row { grid-template-columns: 1fr; } }
+        @media (max-width: 576px) { padding: 20px; }
+    }
+
+    .contacto-side-card {
+        @media (max-width: 768px) { padding: 22px; }
+    }
+
+    .topic-pills {
+        .pill-option .pill {
+            @media (max-width: 576px) { white-space: normal; font-size: .82rem; padding: 8px 14px; }
+        }
+    }
+}

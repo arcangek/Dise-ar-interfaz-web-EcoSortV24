@@ -1,0 +1,237 @@
+// GLOBAL — Estilos base que aplican a TODAS las paginas
+// ============================================================
+// Este partial contiene:
+//   - Estilos del <body> (fuente, color, fondo)
+//   - Clases utilitarias (.container, .cover-img, .badge)
+//   - Estilos de tipografia (h1, h2, h3 con clamp())
+//   - Estilos de seccion (.section, .section-title)
+//   - Centrado absoluto para iconos circulares (compartido por 7 paginas)
+//
+// PRINCIPIO: Todo lo que es comun a TODAS las paginas va aqui.
+// Lo especifico de cada pagina va en pages/_*.scss.
+//
+// ARCHIVOS RELACIONADOS:
+//   - _variables.scss: colores, fuentes, espacios
+//   - _reset.scss: normalizacion base
+// ============================================================
+
+
+
+
+
+
+body {
+    font-family: $fuente;
+    background: $blanco;
+    color: $texto;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+
+.container {
+    width: 90%;
+    max-width: $contenedor;
+    margin: 0 auto;
+}
+
+
+main {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+section,
+.section {
+    padding: $espacio-seccion 0;
+
+    @media (max-width: 768px) {
+        padding: $espacio-movil 0;
+    }
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    color: $azul-oscuro;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+
+h1 { font-size: clamp($h1-min, 4.5vw, $h1-max); }
+h2 { font-size: clamp($h2-min, 3.5vw, $h2-max); }
+h3 { font-size: clamp($h3-min, 2vw, $h3-max); }
+
+p { color: $gris-oscuro; }
+
+
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+
+    h2 {
+        margin-bottom: 15px;
+        color: $azul-oscuro;
+    }
+
+    p {
+        max-width: 700px;
+        margin: auto;
+        color: $gris-oscuro;
+    }
+}
+
+.section-title .badge {
+    margin-bottom: 15px;
+}
+
+
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: rgba($verde, .15);
+    color: $verde;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.text-green { color: $verde-alterno; }
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+}
+
+.badge .icon, .badge-green .icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    color: $verde-alterno;
+    transition: transform 0.2s ease;
+}
+
+.badge:hover .icon, .badge-green:hover .icon {
+    transform: rotate(15deg);
+}
+
+
+.badge-green {
+    background: rgba($verde-alterno, .15);
+    border: 1px solid rgba($verde-alterno, .3);
+    color: $verde-alterno;
+}
+
+
+.feature-icon svg,
+.service-icon svg,
+.extra-icon svg,
+.purpose-icon svg,
+.metric-icon svg,
+.module-icon svg,
+.team-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.input-icon-wrapper .input-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+
+.check-list li::before {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .85rem;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.auth-features li .check-circle svg {
+    width: 13px;
+    height: 13px;
+    fill: none;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+@keyframes imgFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+img {
+    animation: imgFadeIn .4s ease;
+}
+
+// Centrado absoluto para todos los wrappers de iconos circulares (7 paginas)
+[class*="-icon-container"],
+.benefit-icon,
+.feature-card-icon-wrapper,
+.service-icon,
+.metric-icon,
+.module-icon,
+.goal-metric-icon,
+.purpose-icon,
+.contacto-icon-circle,
+.unified-social-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+
+    svg, img, i, .bi {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+        flex-shrink: 0 !important;
+        max-width: 50% !important;
+        max-height: 50% !important;
+    }
+}

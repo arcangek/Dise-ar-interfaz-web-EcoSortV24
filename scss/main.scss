@@ -1,0 +1,31 @@
+// EcoSort — Archivo principal SCSS
+// Compila todos los modulos en css/main.css
+// Orden: abstracts → base → componentes → layout → paginas
+
+// 1. Abstracts: variables de diseño y mixins reutilizables
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+// 2. Base: reset de estilos, reglas globales y animaciones keyframe
+@import "base/reset";
+@import "base/global";
+@import "base/animations";
+
+// 3. Componentes reutilizables: botones y formularios
+@import "components/buttons";
+@import "components/forms";
+@import "components/modals";
+
+// 4. Layout: header, hero slider y footer
+@import "layout/header";
+@import "layout/hero";
+@import "layout/footer";
+
+// 5. Estilos por pagina (7 paginas)
+@import "pages/home";
+@import "pages/nosotros";
+@import "pages/servicios";
+@import "pages/simulador";
+@import "pages/contacto";
+@import "pages/login";
+@import "pages/registro";

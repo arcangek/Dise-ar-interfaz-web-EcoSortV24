@@ -1,0 +1,80 @@
+// RESET — Normalizacion del CSS por defecto del navegador
+// ============================================================
+// Cada navegador (Chrome, Firefox, Safari) tiene sus propios
+// estilos por defecto para elementos HTML. El "reset" elimina
+// esas diferencias para que el sitio se vea igual en todos.
+//
+// Reglas principales:
+//   1. box-sizing: border-box — el padding NO suma al ancho
+//   2. margin/padding: 0 — quitamos espacios por defecto
+//   3. list-style: none — quitamos viñetas de <ul>/<ol>
+//   4. text-decoration: none — quitamos subrayado de enlaces
+//   5. font: inherit — inputs heredan la fuente del body
+//
+// ARCHIVOS RELACIONADOS:
+//   - _global.scss: estilos base del body, .container, tipografia
+// ============================================================
+
+
+
+
+
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth; 
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden; 
+}
+
+
+img {
+    display: block;  
+    max-width: 100%; 
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit; 
+}
+
+
+ul,
+ol {
+    list-style: none; 
+}
+
+
+
+input,
+textarea,
+select,
+button {
+    border: none;
+    outline: none;
+    background: none;
+    font: inherit;
+}
+
+button {
+    cursor: pointer; 
+}
+
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}

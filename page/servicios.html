@@ -1,0 +1,588 @@
+﻿<!doctype html>
+<!-- ================================================================
+     PAGINA: servicios.html — Servicios y planes de EcoSort
+     ================================================================
+     Esta pagina detalla la oferta de servicios:
+       - Hero con video de fondo
+       - Modulos principales: Vision IA, Dashboard ESG, Monitoreo IoT
+       - Modulos adicionales: 6 tarjetas (certificados, API, mapas, etc.)
+       - Proceso: 5 pasos con numeros (captura, analisis, protocolo...)
+       - Planes de precios: Starter, Business (popular), Enterprise
+
+     ARCHIVOS RELACIONADOS:
+       - scss/pages/_servicios.scss: estilos especificos
+       - js/main.js: animaciones generales
+       - js/modales.js: modales del footer
+     ================================================================ -->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Servicios de EcoSort: clasificación por visión IA, dashboard analytics, alertas IoT, API y más. Gestión inteligente de residuos."
+    />
+    <title>Servicios | EcoSort</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="icon" href="../assets/images/logo.png" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="../index.html" class="navbar-brand-link">
+          <img
+            src="../assets/images/logo.png"
+            alt="EcoSort Logo"
+            class="brand-logo-img"
+            loading="lazy"
+          />
+          <span class="brand-text"
+            ><span class="text-white">Eco</span
+            ><span class="text-green">Sort</span></span
+          >
+        </a>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html" class="active">Servicios</a></li>
+            <li><a href="simulador.html">Simulador</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="actions">
+          <a href="login.html" class="btn-link">Iniciar sesión</a>
+          <a href="registro.html" class="btn-primary">Registrarse</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menú de navegación">☰</button>
+      </div>
+    </header>
+
+    <!-- ===========================================================
+         HEADER + HERO DE SERVICIOS
+         ===========================================================
+         Header identico al de todas las paginas. El hero usa un
+         VIDEO de fondo (servicio.mp4) con autoplay, muted y loop.
+         Esto crea un impacto visual mayor que una imagen estatica.
+         El .hero-overlay oscurece el video para que el texto sea
+         legible.
+
+         IMPORTANTE: Los videos no se reproducen en movil si no
+         tienen el atributo "playsinline".
+
+         ARCHIVOS RELACIONADOS:
+           - scss/pages/_servicios.scss: .services-hero
+         =========================================================== -->
+    <main class="services-page">
+      <section class="services-hero">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+          <source src="../assets/video/servicio.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+          <div class="services-hero-content">
+            <span class="badge badge-green"
+              ><img src="../assets/icons/leaf.svg" class="icon" alt="" />
+              PLATAFORMA INTEGRAL
+            </span>
+            <h1>
+              Todo lo que necesitas para clasificar residuos de forma
+              inteligente
+            </h1>
+            <p>
+              De la captura al reporte, EcoSort cubre todo el ciclo de gestión
+              de residuos con tecnología de IA.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Modulos principales (3 bloques alternados)
+           ===========================================================
+           Cada modulo tiene texto a un lado e imagen al otro.
+           El patron se alterna: texto-izquierda (modulo 1),
+           texto-derecha (modulo 2, clase "reverse"), texto-izquierda
+           (modulo 3). Esto se llama "zigzag layout".
+
+           Cada modulo incluye:
+             - Icono distintivo con color
+             - Titulo y descripcion
+             - Lista de checkmarks con caracteristicas tecnicas
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_servicios.scss: .module-block, .module-text
+           =========================================================== -->
+      <section class="modules section">
+        <div class="container">
+          <div class="section-title">
+            <span class="badge">
+              <img src="../assets/icons/leaf.svg" class="icon" alt="" />
+              SERVICIOS PRINCIPALES
+            </span>
+            <h2>Módulos para la clasificación técnica de residuos</h2>
+          </div>
+
+          <div class="module-block">
+            <div class="module-text">
+              <div class="module-icon icon-green-square">
+                <img src="../assets/icons/camera.svg" class="icon" alt="" />
+              </div>
+              <h3>Clasificación por Visión IA</h3>
+              <p>
+                Motor de aprendizaje profundo para clasificación técnica de
+                residuos industriales. Analiza tipo de material, nivel de
+                toxicidad y volumen en milisegundos con
+                <strong>97.3% de precisión</strong>.
+              </p>
+              <ul class="check-list check-green">
+                <li>Identificación en tiempo real < 200ms</li>
+                <li>Soporte 200+ categorías</li>
+                <li>Funciona en condiciones de baja luz</li>
+                <li>Integración con sistemas de bandas</li>
+              </ul>
+            </div>
+            <div class="module-image">
+              <img
+                src="../assets/images/Servicio 1.avif"
+                alt="Centro de control con monitores"
+                class="cover-img"
+                loading="lazy"
+              />
+              <span class="module-label">Clasificación por Visión IA</span>
+            </div>
+          </div>
+
+          <div class="module-block reverse">
+            <div class="module-text">
+              <div class="module-icon icon-blue-circle">
+                <img
+                  src="../assets/icons/chart-blue.svg"
+                  alt=""
+                  width="24"
+                  height="24"
+                />
+              </div>
+              <h3>Dashboard de Impacto y Reportes ESG</h3>
+              <p>
+                Panel con métricas de clasificación, volúmenes procesados,
+                emisiones evitadas y reportes ESG automatizados listos para
+                auditoría ambiental.
+              </p>
+              <ul class="check-list check-blue">
+                <li>Tiempo real con actualizaciones cada 5s</li>
+                <li>Comparativas históricas y tendencias</li>
+                <li>Reportes ESG y GRI automáticos</li>
+                <li>Alertas configurables por KPI</li>
+              </ul>
+            </div>
+            <div class="module-image">
+              <img
+                src="../assets/images/Servicio 2.avif"
+                alt="Dashboard interactivo"
+                class="cover-img"
+                loading="lazy"
+              />
+              <span class="module-label">Dashboard Analytics & Reportes</span>
+            </div>
+          </div>
+
+          <div class="module-block">
+            <div class="module-text">
+              <div class="module-icon icon-orange-circle">
+                <img
+                  src="../assets/icons/bell-orange.svg"
+                  alt=""
+                  width="24"
+                  height="24"
+                />
+              </div>
+              <h3>Sistema de Monitoreo IoT</h3>
+              <p>
+                Red de sensores que monitoriza nivel de llenado, detecta
+                materiales peligrosos y optimiza rutas de recolección reduciendo
+                costos operativos hasta un 35%.
+              </p>
+              <ul class="check-list check-orange">
+                <li>Alertas por push, email y SMS</li>
+                <li>Detección de materiales peligrosos</li>
+                <li>Rutas de recolección optimizadas con IA</li>
+                <li>Historial de incidentes trazable</li>
+              </ul>
+            </div>
+            <div class="module-image">
+              <img
+                src="../assets/images/Servicio 3.avif"
+                alt="Camión recolector con contenedores"
+                class="cover-img"
+                loading="lazy"
+              />
+              <span class="module-label">Sistema de Alertas IoT</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Modulos adicionales (grid de 6 tarjetas)
+           ===========================================================
+           Grid de 6 tarjetas pequenas con icono, titulo y descripcion
+           breve. Complementan los 3 modulos principales con funciones
+           extra: certificados, gestion de equipos, API, mapas,
+           almacenamiento de datos y multi-sede.
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_servicios.scss: .extras, .extra-card
+           =========================================================== -->
+      <section class="extras section">
+        <div class="container">
+          <div class="section-title">
+            <span class="badge">
+              <img src="../assets/icons/leaf.svg" class="icon" alt="" />
+              MÓDULOS ADICIONALES
+            </span>
+            <h2>Funcionalidades complementarias</h2>
+          </div>
+          <div class="extras-grid">
+            <article class="extra-card">
+              <div class="extra-icon">
+                <img src="../assets/icons/file-alt.svg" class="icon" alt="" />
+              </div>
+              <h3>Certificados de Reciclaje</h3>
+              <p>Documentos legales verificados para cumplimiento normativo.</p>
+            </article>
+            <article class="extra-card">
+              <div class="extra-icon">
+                <img src="../assets/icons/users.svg" class="icon" alt="" />
+              </div>
+              <h3>Gestión de Equipos</h3>
+              <p>
+                Coordina operadores, rutas y turnos desde un panel centralizado.
+              </p>
+            </article>
+            <article class="extra-card">
+              <div class="extra-icon">
+                <img src="../assets/icons/plug.svg" class="icon" alt="" />
+              </div>
+              <h3>API REST & Webhooks</h3>
+              <p>
+                Integra EcoSort con sistemas ERP, CRM y plataformas municipales.
+              </p>
+            </article>
+            <article class="extra-card">
+              <div class="extra-icon">
+                <img
+                  src="../assets/icons/map-marked-alt.svg"
+                  class="icon"
+                  alt=""
+                />
+              </div>
+              <h3>Mapas de Cobertura</h3>
+              <p>
+                Visualiza puntos de recolección y zonas de mayor generación.
+              </p>
+            </article>
+            <article class="extra-card">
+              <div class="extra-icon">
+                <img src="../assets/icons/database.svg" class="icon" alt="" />
+              </div>
+              <h3>Almacenamiento de Datos</h3>
+              <p>
+                Historial ilimitado con backup automático y cifrado AES-256.
+              </p>
+            </article>
+            <article class="extra-card">
+              <div class="extra-icon">
+                <img
+                  src="../assets/icons/globe-green.svg"
+                  class="icon"
+                  alt=""
+                />
+              </div>
+              <h3>Multi-sede</h3>
+              <p>
+                Gestiona múltiples ubicaciones, ciudades o países desde un panel
+                unificado.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Proceso en 5 pasos
+           ===========================================================
+           Muestra el flujo de trabajo de EcoSort como 5 pasos
+           numerados (01-05). Cada paso tiene:
+             - Numero grande en circulo
+             - Icono SVG
+             - Titulo y descripcion
+
+           Los pasos son: Captura -> Analisis IA -> Protocolo ->
+           Registro y trazabilidad -> Reporte ambiental.
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_servicios.scss: .process, .process-step-column
+           =========================================================== -->
+      <section class="process section">
+        <div class="container">
+          <div class="section-title">
+            <span class="badge badge-green">
+              <img src="../assets/icons/leaf.svg" class="icon" alt="" />
+              CóMO FUNCIONA
+            </span>
+            <h2>El proceso de clasificación técnica en 5 pasos</h2>
+            <p>
+              Desde la captura del residuo hasta la generación del protocolo de
+              disposición y reporte ambiental.
+            </p>
+          </div>
+          <div class="steps">
+            <div class="process-step-column">
+              <div class="step-icon-box">
+                <span class="step-number-badge">01</span>
+                <img src="../assets/icons/camera.svg" alt="" />
+              </div>
+              <h4 class="step-title">Captura del residuo</h4>
+              <p class="step-description">
+                Cámaras y sensores capturan las características del material en
+                el punto de recolección.
+              </p>
+            </div>
+            <div class="process-step-column">
+              <div class="step-icon-box">
+                <span class="step-number-badge">02</span>
+                <img src="../assets/icons/microchip.svg" alt="" />
+              </div>
+              <h4 class="step-title">Análisis del motor IA</h4>
+              <p class="step-description">
+                El modelo procesa tipo, toxicidad y volumen, clasificando el
+                residuo en menos de 200ms.
+              </p>
+            </div>
+            <div class="process-step-column">
+              <div class="step-icon-box">
+                <span class="step-number-badge">03</span>
+                <img src="../assets/icons/recycle.svg" alt="" />
+              </div>
+              <h4 class="step-title">Generación de protocolo</h4>
+              <p class="step-description">
+                El sistema emite recomendaciones de disposición, almacenamiento
+                y reciclaje.
+              </p>
+            </div>
+            <div class="process-step-column">
+              <div class="step-icon-box">
+                <span class="step-number-badge">04</span>
+                <img src="../assets/icons/database.svg" alt="" />
+              </div>
+              <h4 class="step-title">Registro y trazabilidad</h4>
+              <p class="step-description">
+                Los datos se almacenan con respaldo AES-256 y actualizan las
+                métricas del dashboard.
+              </p>
+            </div>
+            <div class="process-step-column">
+              <div class="step-icon-box">
+                <span class="step-number-badge">05</span>
+                <img src="../assets/icons/file-alt.svg" alt="" />
+              </div>
+              <h4 class="step-title">Reporte ambiental</h4>
+              <p class="step-description">
+                Se generan informes ESG, certificados de reciclaje y alertas
+                técnicas cuando corresponde.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SECCION: Planes de precios (3 columnas)
+           ===========================================================
+           Tres tarjetas de precios: Starter (S/299), Business (S/899),
+           Enterprise (Custom). La tarjeta Business tiene la clase
+           "popular" que la destaca con un tag "MAS POPULAR".
+
+           Cada tarjeta tiene:
+             - Precio y periodo
+             - Descripcion breve
+             - Lista de caracteristicas incluidas
+             - Boton CTA (a registro.html o contacto.html)
+
+           ARCHIVOS RELACIONADOS:
+             - scss/pages/_servicios.scss: .pricing, .pricing-card
+           =========================================================== -->
+      <section class="pricing section">
+        <div class="container">
+          <div class="section-title">
+            <span class="badge">
+              <img src="../assets/icons/leaf.svg" class="icon" alt="" />
+              PLANES
+            </span>
+            <h2>Elige el plan que mejor se adapte</h2>
+            <p>
+              Todos los planes incluyen prueba gratuita de 30 días. Sin
+              permanencia.
+            </p>
+          </div>
+          <div class="pricing-grid">
+            <article class="pricing-card">
+              <h3>Starter</h3>
+              <div class="pricing-price">S/ 299</div>
+              <div class="pricing-period">/mes</div>
+              <p class="pricing-desc">Pequeñas empresas y emprendimientos.</p>
+              <ul class="check-list check-green">
+                <li>Hasta 3 puntos de clasificación</li>
+                <li>Dashboard básico</li>
+                <li>Reportes mensuales</li>
+                <li>Soporte por email</li>
+                <li>API limitada (1,000 req/día)</li>
+              </ul>
+              <a href="registro.html" class="btn-outline">Empezar gratis</a>
+            </article>
+            <article class="pricing-card popular">
+              <div class="popular-tag">MÁS POPULAR</div>
+              <h3>Business</h3>
+              <div class="pricing-price">S/ 899</div>
+              <div class="pricing-period">/mes</div>
+              <p class="pricing-desc">
+                Empresas en crecimiento con múltiples sedes.
+              </p>
+              <ul class="check-list check-green">
+                <li>Hasta 20 puntos de clasificación</li>
+                <li>Dashboard avanzado + Analytics</li>
+                <li>Reportes semanales + ESG</li>
+                <li>Soporte prioritario 24/7</li>
+                <li>API ilimitada</li>
+                <li>Alertas IoT incluidas</li>
+                <li>Certificados de reciclaje</li>
+              </ul>
+              <a href="registro.html" class="btn-primary"
+                >Probar 30 días gratis</a
+              >
+            </article>
+            <article class="pricing-card">
+              <h3>Enterprise</h3>
+              <div class="pricing-price">Custom</div>
+              <div class="pricing-period"></div>
+              <p class="pricing-desc">Municipios y grandes corporaciones.</p>
+              <ul class="check-list check-green">
+                <li>Puntos de clasificación ilimitados</li>
+                <li>BI personalizado + White-label</li>
+                <li>Reportes en tiempo real</li>
+                <li>Soporte dedicado</li>
+                <li>Integración personalizada</li>
+                <li>Consultoría ambiental incluida</li>
+              </ul>
+              <a href="contacto.html" class="btn-outline">Contactar ventas</a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="navbar-brand-link">
+              <img
+                src="../assets/images/logo.png"
+                alt="EcoSort Logo"
+                class="brand-logo-img"
+              />
+              <span class="brand-text"
+                ><span class="text-white">Eco</span
+                ><span class="text-green">Sort</span></span
+              >
+            </a>
+            <p>
+              Plataforma inteligente para la gestión automatizada de residuos
+              industriales mediante Inteligencia Artificial.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Twitter/X">
+                <img src="../assets/icons/twitter.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <img
+                  src="../assets/icons/linkedin-in.svg"
+                  class="icon"
+                  alt=""
+                />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <img src="../assets/icons/instagram.svg" class="icon" alt="" />
+              </a>
+              <a href="#" aria-label="GitHub">
+                <img src="../assets/icons/github.svg" class="icon" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>EMPRESA</h4>
+            <ul>
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="servicios.html">Servicios</a></li>
+              <li><a href="simulador.html">Simulador IA</a></li>
+              <li><a href="../index.html">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>SOPORTE</h4>
+            <ul>
+              <li><a href="contacto.html">Contacto</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="documentacion">Documentación</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="faq">FAQ</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="privacidad">Privacidad</a></li>
+            </ul>
+            <div class="footer-contact">
+              <p>
+                <img
+                  src="../assets/icons/icon-mail-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                info@ecosort.ai
+              </p>
+              <p>
+                <img
+                  src="../assets/icons/icon-phone-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                +51 985 938 535
+              </p>
+              <p>
+                <img
+                  src="../assets/icons/icon-location-green.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                Alfonso Ugarte 930, Cercado de Lima, Lima Centro, Perú
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="sub-footer">
+          <p>© 2026 EcoSort. Todos los derechos reservados.</p>
+          <p>Hecho con 💚 para un planeta más verde</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===========================================================
+          SCRIPTS: main.js + modales.js + auth-header.js
+          ===========================================================
+          servicios.html carga los scripts globales mas el de modales
+          (para los modales del footer). Todo es HTML/CSS estatico.
+          =========================================================== -->
+    <script src="../js/main.js"></script>
+    <script src="../js/modales.js"></script>
+    <script src="../js/auth-header.js" defer></script>
+  </body>
+</html>

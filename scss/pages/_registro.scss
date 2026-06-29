@@ -1,0 +1,419 @@
+// REGISTRO — Estilos exclusivos de registro.html
+// ============================================================
+// Pagina de registro con mismo layout split que login.html.
+// Incluye componentes especificos de registro:
+//
+//   .sector-pills-group — radio buttons estilizados como pills
+//   .reg-plans / .plan-option-card — seleccion de plan con radio
+//     personalizado (appearance: none + ::after para el dot)
+//   .registration-stepper — indicador visual de progreso
+//     (step badge + texto + barra de progreso)
+//
+// TECNICAS:
+//   - input[type="radio"] oculto (opacity:0 + width:0)
+//   - :checked + .sector-pill-label para seleccion visual
+//   - &:has(input:checked) en .plan-option-card (CSS moderno)
+//   - Radio custom con border-radius: 50% + ::after
+//
+// ARCHIVOS RELACIONADOS:
+//   - js/registro.js: stepper multi-paso
+//   - _login.scss: mismo layout .auth-split
+//   - _variables.scss: $verde-alterno, $blanco
+// ============================================================
+
+.sector-pills-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: .5rem;
+
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .sector-pill-label {
+        display: inline-block;
+        padding: .4rem 1rem;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 30px;
+        background: transparent;
+        color: rgba(255,255,255,.7);
+        font-size: .8rem;
+        cursor: pointer;
+        transition: all .25s cubic-bezier(.4,0,.2,1);
+        user-select: none;
+
+        
+        &:hover {
+            border-color: rgba(255,255,255,.4);
+            color: $blanco;
+        }
+    }
+
+    
+    input[type="radio"]:checked + .sector-pill-label {
+        border-color: $verde-alterno !important;
+        color: $verde-alterno !important;
+        background: rgba($verde-alterno,.05);
+        font-weight: 500;
+    }
+}
+
+
+
+.auth-split .reg-plans {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.plan-option-card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: .85rem 1.25rem !important;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 14px;
+    background: rgba(255,255,255,.02);
+    cursor: pointer;
+    transition: all .2s ease;
+    gap: 1rem !important;
+
+    
+    &.active,
+    &:has(input:checked) {
+        border-color: $verde-alterno !important;
+        background: rgba($verde-alterno,.04) !important;
+    }
+
+    .plan-card-text-group {
+        display: flex;
+        flex-direction: column;
+        gap: .15rem;
+
+        strong {
+            color: $blanco;
+            font-size: .95rem;
+            font-weight: 600;
+        }
+
+        .plan-tag {
+            color: $verde-alterno;
+            font-size: .78rem;
+            font-weight: 500;
+        }
+    }
+}
+
+.plan-radio-custom {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    margin: 0;
+    transition: border-color .2s ease;
+
+    
+    &:checked {
+        border-color: $verde-alterno !important;
+
+        &::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: $verde-alterno;
+            border-radius: 50%;
+            display: block;
+        }
+    }
+}
+
+
+
+.form-header-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-main-title {
+    font-size: 1.8rem !important;
+    font-weight: 700;
+    color: $blanco;
+    margin-bottom: .25rem;
+}
+
+.form-subtitle {
+    font-size: .9rem;
+    color: rgba(255,255,255,.6);
+}
+
+
+
+.registration-stepper {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 1.25rem;
+}
+
+.step-badge {
+    background: rgba($verde-alterno,.15);
+    color: $verde-alterno;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.step-text-label {
+    font-size: .85rem;
+    color: $verde-alterno;
+    font-weight: 500;
+}
+
+.step-progress-bar-container {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,.1);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-left: .5rem;
+}
+
+.step-progress-fill-line {
+    width: 33%;
+    height: 100%;
+    background: $verde-alterno;
+    border-radius: 99px;
+}
+
+
+
+.auth-split .registration-view-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    height: 100%;
+    padding-bottom: 4rem;
+    padding-top: 100px !important;
+}
+
+.registration-form-box {
+    margin-top: 0 !important;
+}
+
+
+
+.step-indicator {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 2rem;
+    font-size: .85rem;
+}
+
+.step-done {
+    color: $gris-medio;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.step-active {
+    color: $verde-alterno;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: $verde-alterno;
+    color: $blanco;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: .75rem;
+    line-height: 22px;
+    text-align: center;
+}
+
+.auth-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: .5rem;
+    color: $blanco;
+}
+
+.auth-subtitle {
+    color: $gris-medio;
+    margin-bottom: 2rem;
+    font-size: .95rem;
+}
+
+.auth-input-group {
+    margin-bottom: 1.5rem;
+}
+
+.auth-label {
+    display: block;
+    margin-bottom: .5rem;
+    color: $blanco;
+    font-size: .9rem;
+}
+
+.auth-input {
+    width: 100%;
+    padding: .85rem;
+    background: $borde-oscuro;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: $radio-medio;
+    color: $blanco;
+    font-size: .9rem;
+    font-family: inherit;
+    box-sizing: border-box;
+
+    &::placeholder { color: $gris-medio; }
+
+    &:focus {
+        outline: none;
+        border-color: $verde-alterno;
+    }
+}
+
+.auth-checkbox-group {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+
+    label {
+        color: $gris-medio;
+        font-size: .85rem;
+        line-height: 1.4;
+    }
+}
+
+.auth-action-row {
+    display: flex;
+    gap: 1rem;
+
+    .btn-secondary {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,.15);
+        color: $blanco;
+        padding: .85rem 1.5rem;
+        border-radius: $radio-medio;
+        cursor: pointer;
+        font-size: .9rem;
+        font-family: inherit;
+        transition: background .2s ease;
+
+        &:hover { background: rgba(255,255,255,.05); }
+    }
+
+    .btn-primary {
+        flex: 1;
+        background: $verde-alterno;
+        border: none;
+        color: $blanco;
+        padding: .85rem;
+        border-radius: $radio-medio;
+        font-weight: bold;
+        font-size: .9rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background .2s ease;
+
+        &:hover { background: darken($verde-alterno, 5%); }
+    }
+}
+
+.success-check-circle {
+    background: rgba($verde-alterno, .1);
+    border: 2px solid $verde-alterno;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+}
+
+.success-title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: $blanco;
+    text-align: center;
+}
+
+.success-text {
+    color: $gris-medio;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-size: .95rem;
+    text-align: center;
+
+    strong { color: $blanco; font-weight: 500; }
+}
+
+.btn-success-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: $verde-alterno;
+    color: $blanco;
+    padding: .85rem 2rem;
+    border-radius: $radio-medio;
+    font-weight: bold;
+    text-decoration: none;
+    width: 100%;
+    font-size: .9rem;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background .2s ease;
+
+    &:hover { background: darken($verde-alterno, 5%); }
+}
+
+.registration-view-section {
+    @media (max-width: 992px) {
+        .sector-pills-group {
+            flex-direction: column;
+            .sector-pill-label { width: 100%; text-align: center; }
+        }
+    }
+
+    @media (max-width: 576px) {
+        .form-main-title { font-size: 1.5rem !important; }
+
+        .step-text-label { font-size: .78rem; }
+
+        .plan-option-card {
+            padding: .7rem 1rem !important;
+            gap: .75rem !important;
+        }
+    }
+}
