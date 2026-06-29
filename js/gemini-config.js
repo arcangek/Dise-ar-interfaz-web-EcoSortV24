@@ -8,7 +8,7 @@
 //
 // USO:
 //   1. Obtén una API key gratuita en https://aistudio.google.com/app/apikey
-//   2. Reemplaza "TU_API_KEY_REAL_AQUÍ" con tu clave real en la línea 30
+//   2. Reemplaza "AQUI_TU_API_KEY" con tu clave real en la línea 13
 //   3. NUNCA subas este archivo con la key a un repositorio publico
 //      (GitHub, GitLab, etc.) porque cualquier persona podria usarla.
 //
@@ -24,10 +24,10 @@
 var GEMINI_CONFIG = {
     // =========================================================
     // API Key de Google AI Studio
-    // Reemplazar "TU_API_KEY_REAL_AQUÍ" con la key real obtenida en:
+    // Reemplazar "AQUI_TU_API_KEY" con la key real obtenida en:
     // https://aistudio.google.com/app/apikey
     // =========================================================
-    apiKey: "TU_API_KEY_REAL_AQUÍ",
+    apiKey: "AQ.Ab8RN6LS5yrBVFm1Nd3LP2GG-UTj9ilA3u0UOA8SUQhWogMgIw",
 
     // =========================================================
     // Modelo de Gemini a utilizar
